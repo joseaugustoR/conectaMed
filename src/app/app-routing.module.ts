@@ -11,7 +11,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-<<<<<<< HEAD
+
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
@@ -26,11 +26,8 @@ const routes: Routes = [
     path: 'cadastro',
     loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
   },
-=======
 
->>>>>>> 799ab71bb7fd36f9d818b39c12b9188fd7152c3a
 ];
-
 
 @NgModule({
   imports: [
