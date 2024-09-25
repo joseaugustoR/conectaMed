@@ -14,6 +14,31 @@ const routes: Routes = [
     path: 'criadores',
     loadChildren: () => import('./criadores/criadores.module').then( m => m.CriadoresPageModule)
   },
+<<<<<<< HEAD
+=======
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'cadastro',
+    loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
+  },
+
+];
+>>>>>>> 75fca55a888c2f8fb8cedcb8409d6bf44b3817c5
 
 ];
 
