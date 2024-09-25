@@ -1,0 +1,7 @@
+{
+  "name": "conectamed",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
