@@ -1,12 +1,17 @@
 *{
     font-family: "open sans", sans-serif;
 }
+
 img{
     width: 300px;
 }
 
 #logo{
-    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 ion-card{
@@ -20,6 +25,7 @@ ion-card{
     justify-content: center;
     font-size: 40px;
     color: white;
+    padding-bottom: 30px;
 }
 
 ion-input{
@@ -27,16 +33,17 @@ ion-input{
     background-color: white;
     border-radius: 10px;
     border-style: none;
+    font-size: 12px;
+    --padding-start: 10px;
+    height: 10px;
   
 }
-
-
 
 p{
     color: white;
 }
 
-#redefinir{
+.redefinir{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,4 +75,5 @@ ion-button{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #041230;
 }
