@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="login.page.scss">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <ion-header [translucent]="true">
 
 </ion-header>
@@ -9,21 +12,20 @@
   </div>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
+      <ion-card-title id="titulo">Login</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <ion-input label="Email"  placeholder="..." class="caixa"></ion-input>
       <br>
-      <ion-input label="Senha" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
-      <br>
-      <p>Esqueceu sua senha?<br>
-        Entre em contato</p>
+      <ion-input label="Senha"  placeholder="..." class="caixa"></ion-input>
+      <p class="redefinir">Esqueceu sua senha?</p>
+        <p class="redefinir">Entre em <a href=""> contato</a></p>
       <br>
       <div id="botao">
         <ion-button>Entrar</ion-button>
       </div>
-      <p>Termos de uso</p>
+      <a href="" id="termos">Termos de uso</a>
     </ion-card-content>
   </ion-card>
   <p>©ConectaMed - Todos os direitos reservados</p>
