@@ -1,5 +1,28 @@
 
+<ion-app>
+  <ion-menu contentId="main-content">
+    <ion-header class="perfil">
+      <ion-toolbar color="tertiary">
+      <img src="assets/cmbangu.jpg" alt="" style="height: 60px; width: 60px;">
+        <ion-title>Perfil do Usuário</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">This is the menu content.</ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+  </div>
+</ion-app>
 
+<!--
 
 <ion-card labelPlacement="start" class="fundo-cadastro">
 
@@ -20,7 +43,7 @@
 >   </ion-input>
   </ion-card-content> 
 
-  <!-- <ion-card-content class="text-box">
+  <ion-card-content class="text-box">
     <ion-input
       type="nomeMae"
       fill="solid"
@@ -167,8 +190,7 @@
   </ion-card-content> 
 
 </ion-card>
-
-
+-->
 
 <script>
   const input = document.querySelector('ion-input');
@@ -198,4 +220,3 @@
   };
 </script>
 
--->

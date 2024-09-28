@@ -24,3 +24,12 @@
     justify-content: center;
     position: relative;
 }
+
+.perfil {
+    display: flex;
+
+}
+
+::backdrop {
+    color: green;
+}
