@@ -12,13 +12,15 @@
   </div>
   <ion-card>
     <ion-card-header>
-      <ion-card-title id="titulo">Login</ion-card-title>
+      <ion-card-title id="titulo" width="10px">Login</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-input label="Email"  placeholder="..." class="caixa"></ion-input>
+      <ion-input label="Email"  placeholder="..." class="caixa" ></ion-input>
       <br>
-      <ion-input label="Senha"  placeholder="..." class="caixa"></ion-input>
+      <ion-input type="password" label="Senha" placeholder="...">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
       <p class="redefinir">Esqueceu sua senha?</p>
         <p class="redefinir">Entre em <a href=""> contato</a></p>
       <br>
