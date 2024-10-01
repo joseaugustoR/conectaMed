@@ -1,4 +1,6 @@
 
+
+
 <ion-app>
   <ion-menu contentId="main-content">
     <ion-header class="perfil">
@@ -21,6 +23,14 @@
     <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
   </div>
 </ion-app>
+
+  <div class="login-container">
+    <form padding [formGroup]="signupForm" (submit)="signup()" novalide> 
+      <ion-item>
+      <ion-input type="text" formControlName="firstName" placeholder="" ></ion-input>
+      </ion-item>
+    </form>
+  </div>
 
 <!--
 
