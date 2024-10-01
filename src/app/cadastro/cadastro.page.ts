@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { UsuarioModel } from 'src/models/usuario.models';
-import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -18,6 +16,27 @@ export class CadastroPage implements OnInit {
 
 }
 
+/*
+
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UsuarioModel } from 'src/models/usuario.models';
+import { NavController } from '@ionic/angular';
+
+
+export class SignupPage {
+
+signupForm: any;
+
+constructor(public formBuilder: FormBuilder, public navCtrl: NavController)
+this.signupForm = formBuilder. group({
+email: ["', Validators.required],
+password: ["", Validators.compose([Validators.minLength(6), Validators.maxLength(20),
+passwordConfirmation; [", Validators.compose([Validators.minLength(6), Validators.ma:
+firstName : ["', Validators.required],
+lastName: ["", Validators.required]
+
+
+
 export class HomePage {
   userForm: FormGroup;
 
@@ -26,6 +45,20 @@ export class HomePage {
         nome: ['', Validators.required],
         email: ['', Validators.required]
     })
-
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignupPa')
+  }
+
+
+
+  save (){
+    let { nome, email } = this.userForm.value;
+    let addUsuario = new UsuarioModel(1, nome, email)
+  }
+
 }
+}
+
+*/
