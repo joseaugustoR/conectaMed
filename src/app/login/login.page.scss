@@ -2,7 +2,9 @@
     font-family: "open sans", sans-serif;
 }
 
-
+#body{
+    background-image: url(../../assets/fundo.png);
+}
 
 img{
     width: 300px;
@@ -12,8 +14,8 @@ img{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 ion-card{
@@ -81,4 +83,9 @@ ion-button{
 
 a{
     color: #041230;
+}
+
+#direitos{
+    margin: 60px 10px 10px 10px;
+    padding-bottom: 20px;
 }
