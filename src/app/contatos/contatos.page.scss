@@ -1,25 +1,32 @@
 *{
     font-family: "open sans", sans-serif;
+    color: black;
 }
 
-ion-content{
+ion-header{
     background-color: #0081AA;
-    padding: 30px;
+}
+
+#body{
+    background-color: white;
+    padding: 10px 10px 250px 10px;
+}
+
+a{
+    color: #0e3079;
 }
 
 ion-toolbar{
    height: 80px;
 }
 
-ion-title{
- padding-top: 20px;
+#title{
+ padding: 10px 0 0 10px;
+ color: white;
+ font-size: 20px;
 }
 
 img{
     width: 100px;
-}
-
-ion-content{
-    background-color: white;
-    margin: 50px;
+    padding-bottom: 30px;
 }

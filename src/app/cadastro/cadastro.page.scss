@@ -1,46 +1,75 @@
-* {
-    background-color: white;
+
+*{
+    font-family: "open sans", sans-serif;
 }
 
-.custom-input {
-    --color: black;
-    --placeholder-color: black;
-    background-color: white;
+#body{
+    background-image: url(../../assets/fundo.png);
 }
 
-.fundo-cadastro {
-    background-color: white;
-    justify-content: center;
+img{
+    width: 300px;
+}
+
+#logo{
+    display: flex;
     align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-.text-box {
+ion-card{
+    background-color: #ffff;
+    margin: 30px;
+}
+
+#titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #0081AA;
+}
+
+ion-input{
+    color: #5A6266;
     background-color: white;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 12px;
+    --padding-start: 10px;
+    height: 10px;
+  
+}
+
+p{
     color: white;
 }
 
-.logotipo {
+.redefinir{
+    display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
-.perfil {
-    display: flex;
 
+#botao{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
 }
 
-::backdrop {
-    color: green;
+ion-button{
+    --background: white;
+    --color: #5A6266;
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
 }
 
-.cadastro-container {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    width: 100%;
-    margin: 0 auto;
-    padding: 10vw;
-    text-align: center;
-    color: #fff;
+
+a{
+    color: #041230;
 }
