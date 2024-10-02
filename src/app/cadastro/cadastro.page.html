@@ -20,11 +20,11 @@
   <ion-card-content>
     <ion-item>
         <ion-input
-        type="email"
+        type="nome"
         fill="solid"
-        label="Email"
+        label="Nome Completo"
         labelPlacement="floating"
-        helperText="Enter a valid email"
+        helperText="Digite um Nome Válido"
         errorText="Invalid email"
         ngModel
         email
@@ -122,6 +122,168 @@
     ></ion-input>  
     </ion-item> 
 
+    <!--
+
+    <ion-item>
+      <ion-input class="custom-input"
+        type="nome"
+        fill="solid"
+        label="Nome Completo"
+        labelPlacement="floating"
+        helperText="Digite um nome válido"
+        errorText="Nome inválido"
+        ngModel
+        text
+  >   </ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="nomeMae"
+        fill="solid"
+        label="Nome materno"
+        labelPlacement="floating"
+        helperText="Digite um nome válido"
+        errorText="Nome inválido"
+        ngModel
+        text
+      ></ion-input>
+    </ion-card-content> 
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="nomeMae"
+        fill="solid"
+        label="Nome paterno"
+        labelPlacement="floating"
+        helperText="Digite um nome válido"
+        errorText="Nome inválido"
+        ngModel
+        text
+    > </ion-input>
+  </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="cpf"
+        fill="solid"
+        label="CPF"
+        labelPlacement="floating"
+        helperText="Digite um CPF válido"
+        errorText="CPF inválido"
+        ngModel
+        text
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="celular"
+        fill="solid"
+        label="Celular"
+        labelPlacement="floating"
+        helperText="Digíte um número válido"
+        errorText="Número inválido"
+        ngModel
+        tel
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="cep"
+        fill="solid"
+        label="CEP"
+        labelPlacement="floating"
+        helperText="Digite um CEP válido"
+        errorText="CEP inválido"
+        ngModel
+        numeric
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="estado"
+        fill="solid"
+        label="Estado"
+        labelPlacement="floating"
+        helperText="Digite um estado válido"
+        errorText="Estado inválido"
+        ngModel
+        text
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="cidade"
+        fill="solid"
+        label="Cidade"
+        labelPlacement="floating"
+        helperText="Digite uma cidade válida"
+        errorText="Cidade inválida"
+        ngModel
+        text
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="endereco"
+        fill="solid"
+        label="Endereço"
+        labelPlacement="floating"
+        helperText="Digite um endereço válido"
+        errorText="Endereço Inválido"
+        ngModel
+        text
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="email"
+        fill="solid"
+        label="Email"
+        labelPlacement="floating"
+        helperText="Digite um Email válido"
+        errorText="Email inválido"
+        ngModel
+        required
+        email
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input 
+        type="senha"
+        fill="solid"
+        label="Senha"
+        labelPlacement="floating"
+        helperText="Digite uma senha válida"
+        errorText="Senha inválida"
+        ngModel
+        required
+        email
+        min-lenght="10"
+      ></ion-input>
+    </ion-item>
+  
+    <ion-card-content class="text-box">
+      <ion-input
+        type="plano"
+        fill="solid"
+        label="Plano"
+        labelPlacement="floating"
+        helperText="Digite um plano válido"
+        errorText="Plano inválido"
+        ngModel
+        text
+      ></ion-input>
+    </ion-item>
+  
+
 
     <div id="botao">
       <ion-button>Entrar</ion-button>
@@ -135,7 +297,7 @@
 </div>
 
 
-<!--
+
 
   <div class="login-container">
     <form padding [formGroup]="signupForm" (submit)="signup()" novalide> 
