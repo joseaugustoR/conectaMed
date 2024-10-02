@@ -29,24 +29,42 @@
     <ion-button fill="clear">Cancelar</ion-button>
   </ion-card>
 
-  <ion-button> Agendar Consulta</ion-button>
-  <ion-button> Minhas Consultas</ion-button>
-
-  <ion-card>
-    <img alt="ConectaMed Bangu" src=assets\cmbangu.jpg>
+  <ion-card a="#">
+    <img src=assets\marcar.jpg>
     <ion-card-header>
-      <ion-card-title>ConectaMed Bangu</ion-card-title>
+      <ion-card-title>Marcar Consulta</ion-card-title>
       <ion-card-subtitle></ion-card-subtitle>
     </ion-card-header>
-  
-    <ion-card-content>
-    <ion-card-subtitle>HORÁRIO DE FUNICNAMENT0: 8:00am ás 18:00pm</ion-card-subtitle>
-     R. Fonseca, 240 - Bangu, Rio de Janeiro - RJ, 21820-005
-    </ion-card-content>
   </ion-card>
 
+  <ion-card a="#">
+    <img src=assets\consulta.jpg>
+    <ion-card-header>
+      <ion-card-title>Minhas Consultas</ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 
-
-
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Início</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="bottom">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="profile">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  
 
 </ion-content>
+
+
