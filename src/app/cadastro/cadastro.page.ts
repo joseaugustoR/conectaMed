@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
@@ -9,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 
 export class CadastroPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public navCtrl: NavController
+  ) { }
 
   ngOnInit() {
   }
 
+  goHome() {
+    this.navCtrl.navigateForward('home')
+  }
+
 }
+
+
 
 /*
 

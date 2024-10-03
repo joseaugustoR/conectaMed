@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public navCtrl: NavController
+  ) { }
 
   ngOnInit() {
   }
 
-  
+  goHome() {
+    this.navCtrl.navigateRoot('home')
+  }
+
 }
 
