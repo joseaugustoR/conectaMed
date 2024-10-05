@@ -25,6 +25,10 @@ const routes: Routes = [
   },  {
     path: 'contatos',
     loadChildren: () => import('./contatos/contatos.module').then( m => m.ContatosPageModule)
+  },
+  {
+    path: 'agendamento',
+    loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
   }
 
 ];
