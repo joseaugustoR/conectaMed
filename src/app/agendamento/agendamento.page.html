@@ -10,9 +10,67 @@
   </ion-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">agendamento</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="body">
+ <p id="titulo">Agendar consulta</p>
+ <ion-list>
+  <ion-item>
+    <ion-select
+      interface="popover"
+      toggleIcon="add"
+      expandedIcon="remove"
+      aria-label="consult"
+      placeholder="Consulta"
+    >
+      <ion-select-option value="Clínico">Clínico geral</ion-select-option>
+      <ion-select-option value="Oftamologista">Oftamologista</ion-select-option>
+      <ion-select-option value="Ginecologista">Ginecologista</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+    <ion-select
+      interface="popover"
+      toggleIcon="add"
+      expandedIcon="remove"
+      aria-label="location"
+      placeholder="Local"
+    >
+      <ion-select-option value="bangu">Bangu</ion-select-option>
+      <ion-select-option value="cg">Campo grande</ion-select-option>
+      <ion-select-option value="sc">Santa cruz</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+    <ion-select
+      interface="popover"
+      toggleIcon="add"
+      expandedIcon="remove"
+      aria-label="date"
+      placeholder="Data"
+    >
+      <ion-select-option value="ddoze">Dia 12</ion-select-option>
+      <ion-select-option value="dtreze">Dia 13</ion-select-option>
+      <ion-select-option value="dcatorze">Dia 14</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+    <ion-select
+      interface="popover"
+      toggleIcon="add"
+      expandedIcon="remove"
+      aria-label="hoour"
+      placeholder="Hora"
+    >
+    <ion-select-option value="dez">10:00</ion-select-option>
+    <ion-select-option value="meiodia">12:00</ion-select-option>
+    <ion-select-option value="tres">15:00</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+</div>
 </ion-content>
