@@ -14,31 +14,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>CONSULTA AGENDADA</ion-card-title>
-   
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-card-subtitle>ESPECIALIDADE: Oftalmologia</ion-card-subtitle>
-      <ion-card-subtitle>Dr.Raquel Brito</ion-card-subtitle>
-      <ion-card-subtitle>UNIDADE: ConcetaMed Bangu - R. Fonseca, 240 - Bangu, Rio de Janeiro - RJ, 21820-005</ion-card-subtitle>
-    </ion-card-content>
-  
-    <ion-button fill="clear">Cancelar</ion-button>
-  </ion-card>
-
-  <ion-card a="#">
-    <img src=assets\marcar.jpg>
+  <ion-card class="consultas" a="#">
+    <img src=assets\marcar.jpg class="custom-image">
     <ion-card-header>
       <ion-card-title>Marcar Consulta</ion-card-title>
       <ion-card-subtitle></ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
-  <ion-card a="#">
-    <img src=assets\consulta.jpg>
+  <ion-card class="consultas" a="#">
+    <img src=assets\consulta.jpg class="custom-image">
     <ion-card-header>
       <ion-card-title>Minhas Consultas</ion-card-title>
       <ion-card-subtitle></ion-card-subtitle>
@@ -46,20 +31,20 @@
   </ion-card>
 
   <ion-tabs>
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" class="nav">
       <ion-tab-button tab="home">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Início</ion-label>
+        <ion-icon name="logo-github"></ion-icon>
+        <ion-label>Criadores</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="bottom">
         <ion-icon name="home"></ion-icon>
-        <ion-label>Home</ion-label>
+        <ion-label>Início</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="profile">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Profile</ion-label>
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Contatos</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
