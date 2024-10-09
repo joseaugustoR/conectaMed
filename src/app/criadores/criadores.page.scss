@@ -9,9 +9,9 @@ ion-toolbar{
 }
  
 #title{
-  margin: 30px 0 0 0;
-  color: white;
-  font-size: 20px;
+    margin: 30px 0 0 10px;
+    color: white;
+    font-size: 25px;
 }
  
 #logo{
@@ -61,4 +61,36 @@ ion-card{
 
 #list{
     display: flex;
+}
+
+ion-tabs {
+   position:fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10; /* Aumente o valor do z-index se precisar sobrepor outros elementos */
+}
+  
+ion-content {
+    margin-bottom: 56px; /* Ajuste o valor se o tamanho do ion-tab-bar for diferente */
+}
+
+.nav {
+    background-color: #0081AA !important; /* Cor de fundo das tabs */
+}
+  
+.nav ion-tab-button {
+    color: white !important; /* Cor do texto e ícones em branco */
+    background: transparent !important; /* Fundo transparente */
+}
+  
+.nav ion-tab-button:hover,
+.nav ion-tab-button:focus,
+.nav ion-tab-button:active {
+    color: white !important; /* Cor do texto e ícones em branco no hover, focus e active */
+    background: transparent !important; /* Fundo transparente */
+}
+  
+.nav ion-tab-button.activated {
+    color: white !important; /* Cor do texto e ícones em branco quando ativo */
+    background: transparent !important; /* Fundo transparente quando ativo */
 }

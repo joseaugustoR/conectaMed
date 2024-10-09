@@ -1,6 +1,5 @@
 *{
     font-family: "open sans", sans-serif;
-    color: black;
 }
 
 ion-toolbar{
@@ -9,9 +8,9 @@ ion-toolbar{
 }
  
 #title{
-  margin: 30px 0 0 0;
-  color: white;
-  font-size: 20px;
+    margin: 30px 0 0 10px;
+    color: white;
+    font-size: 25px;
 }
  
 #logo{
@@ -22,4 +21,25 @@ ion-toolbar{
 #body{
     background-color: white;
     padding: 10px 10px 250px 10px;
+}
+
+.nav {
+    background-color: #0081AA !important; /* Cor de fundo das tabs */
+}
+  
+.nav ion-tab-button {
+    color: white !important; /* Cor do texto e ícones em branco */
+    background: transparent !important; /* Fundo transparente */
+}
+  
+.nav ion-tab-button:hover,
+.nav ion-tab-button:focus,
+.nav ion-tab-button:active {
+    color: white !important; /* Cor do texto e ícones em branco no hover, focus e active */
+    background: transparent !important; /* Fundo transparente */
+}
+  
+.nav ion-tab-button.activated {
+    color: white !important; /* Cor do texto e ícones em branco quando ativo */
+    background: transparent !important; /* Fundo transparente quando ativo */
 }
