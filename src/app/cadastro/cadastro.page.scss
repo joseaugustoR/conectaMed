@@ -73,3 +73,29 @@ ion-button{
 a{
     color: #041230;
 }
+
+/* CSS MENU LATERAL */
+
+.cabecalho {
+    --background:#0081AA !important;
+}
+
+.logo-topo {
+    align-items: center;
+}
+
+.foto-perfil {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 5px solid #0081AA;
+}
+
+.perfil {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
