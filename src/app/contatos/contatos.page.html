@@ -4,7 +4,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title id="title">criadores</ion-title>
+    <p id="title">Contatos</p>
     <ion-buttons slot="end">
       <img id="logo" src="assets/logo_branca.png" alt="Logo">
     </ion-buttons>
@@ -20,5 +20,24 @@
  <p>Deseja mudar o plano, entre em contato com: <a href="">(21) 99999-6666</a></p>
  <p>Tendo problemas com o aplicativo, entre em contato com: <a href="">conectamedgmail.com</a></p>
 </div>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="nav">
+    <ion-tab-button tab="home">
+      <ion-icon name="logo-github"></ion-icon>
+      <ion-label>Criadores</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="bottom">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Início</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="call"></ion-icon>
+      <ion-label>Contatos</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 
 </ion-content>
