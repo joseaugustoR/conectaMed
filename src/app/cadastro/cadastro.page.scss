@@ -76,26 +76,26 @@ a{
 
 /* CSS MENU LATERAL */
 
-ion-header {
-    height: 80px; /* Altere para a altura desejada */
-    background-color: #0081AA; /* ou a cor que preferir */
-
-  }
-  
-  /* Aumentar a altura do ion-toolbar */
-  ion-toolbar {
-    min-height: 80px; /* Deve ser igual ou maior que a altura do ion-header */
-  }
-  
-  /* Opcional: Ajustar o logo dentro da barra */
-  #logo img {
-    width: auto; /* Mantém a proporção */
-  }
-
-.toolbar-container {
-    height: 60px;
+.cabecalho {
+    --background:#0081AA !important;
 }
 
-.menu {
-    height: 60px;
+.logo-topo {
+    align-items: center;
+}
+
+.foto-perfil {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 5px solid #0081AA;
+}
+
+.perfil {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
