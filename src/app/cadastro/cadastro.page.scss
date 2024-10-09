@@ -73,3 +73,29 @@ ion-button{
 a{
     color: #041230;
 }
+
+/* CSS MENU LATERAL */
+
+ion-header {
+    height: 80px; /* Altere para a altura desejada */
+    background-color: #0081AA; /* ou a cor que preferir */
+
+  }
+  
+  /* Aumentar a altura do ion-toolbar */
+  ion-toolbar {
+    min-height: 80px; /* Deve ser igual ou maior que a altura do ion-header */
+  }
+  
+  /* Opcional: Ajustar o logo dentro da barra */
+  #logo img {
+    width: auto; /* Mantém a proporção */
+  }
+
+.toolbar-container {
+    height: 60px;
+}
+
+.menu {
+    height: 60px;
+}
