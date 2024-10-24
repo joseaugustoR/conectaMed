@@ -3,22 +3,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-  <ion-menu contentId="main-content" side="start">
-    
-  <div class="perfil">
-      <img class="foto-perfil" src="assets/eu 1.png" alt="">
-  </div>
-
-  <div>
-    <h1>Nome</h1>
-    <h1>Nome</h1>
-d    <h1>Plano</h1>
-  </div>
-
-
-
-  </ion-menu>
-
   <ion-router-outlet id="main-content">
     <ion-header class="cabecalho" [translucent]="true">
       <ion-toolbar id="menu">
@@ -32,6 +16,26 @@ d    <h1>Plano</h1>
         </ion-title>
       </ion-toolbar>
     </ion-header>
+
+    <ion-card-content>
+      <ion-item>
+          <ion-input
+          type="nome"
+          fill="solid"
+          label="Nome Completo"
+          labelPlacement="floating"
+          helperText="Digite um Nome Válido"
+          errorText="Invalid email"
+          ngModel
+          email
+        ></ion-input>  
+      </ion-item>
+  
+      <ion-item>
+        <ion-button (click)="goHome()">Finalizar</ion-button>
+      </ion-item>
+  
+    </ion-card-content>
 
   <!--
 <div id="body">
@@ -253,6 +257,7 @@ d    <h1>Plano</h1>
         text
       ></ion-input>
     </ion-item>
+
   
     <ion-card-content class="text-box">
       <ion-input
@@ -346,7 +351,12 @@ d    <h1>Plano</h1>
     </form>
   </div>
 
--->
+
+
+
+
+
+
 
 <ion-card labelPlacement="start" class="fundo-cadastro">
 
@@ -514,7 +524,7 @@ d    <h1>Plano</h1>
   </ion-card-content> 
 
 </ion-card>
-
+-->
 
 <script>
   const input = document.querySelector('ion-input');

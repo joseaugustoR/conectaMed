@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Pessoa } from '../../models/pessoa';
 import { Observable } from 'rxjs';
+import { Pessoa } from '../../models/pessoa';
 import { map } from 'rxjs/operators';
 
 @Injectable({
