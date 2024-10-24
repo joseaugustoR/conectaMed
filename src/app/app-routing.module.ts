@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'agendamento',
     loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   }
 
 ];
