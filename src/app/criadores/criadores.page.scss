@@ -30,7 +30,7 @@ ion-card{
 }
 
 #foto{
-    width: 100px;
+ 
 }
 
 #icons{
@@ -93,4 +93,8 @@ ion-content {
 .nav ion-tab-button.activated {
     color: white !important; /* Cor do texto e ícones em branco quando ativo */
     background: transparent !important; /* Fundo transparente quando ativo */
+}
+
+.flex-card {
+    display: flex;
 }

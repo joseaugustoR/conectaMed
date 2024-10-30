@@ -5,7 +5,7 @@
 
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <p id="title">criadores</p>
+    <p id="title">Criadores</p>
     <ion-buttons slot="end">
       <img id="logo" src="assets/logo_branca.png" alt="Logo">
     </ion-buttons>
@@ -16,57 +16,24 @@
 
 
   <div id="body">
-    <ion-card>
-      <div id="aolado">
-        <img alt="" src="assets/eu 1.png" class="foto" />
+    <ion-card class="flex-card">
+      <div class="foto" id="aolado">
+        <img alt="" src="assets/eu 1.png"/>
+      </div>
+
+      <div class="nome">
         <p id="titulo">Brenda Rodrigues</p>
+        <p>Contribuções:</p>
+        <p>Identidade Visual</p>
+        <p>Sei Lá</p>
+        <ion-icon name="logo-github" size="large"></ion-icon>
+        <ion-icon name="logo-linkedin" size="large"></ion-icon>
+
       </div>
-      <div id="icons">
-        <img src="assets/icon_link.png" alt="" id="link">
-        <img src="assets/icon_git.png" alt="" id="git">
-      </div>
-      <ion-card-content>
-        <p id="t_texto">Contribuições</p>
-        <div id="list">
-          <ul class="lista">
-            <li>bla bla</li>
-            <li>blabla</li>
-            <li>bls</li>
-          </ul>
-          <ul class="lista">
-            <li>bla</li>
-            <li>bka</li>
-            <li>hskas</li>
-          </ul>
-        </div>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <div id="aolado">
-        <img alt="" src="assets/eu 1.png" class="foto" />
-        <p id="titulo">Brenda Rodrigues</p>
-      </div>
-      <div id="icons">
-        <img src="assets/icon_link.png" alt="" id="link">
-        <img src="assets/icon_git.png" alt="" id="git">
-      </div>
-      <ion-card-content>
-        <p id="t_texto">Contribuições</p>
-        <div id="list">
-          <ul class="lista">
-            <li>bla bla</li>
-            <li>blabla</li>
-            <li>bls</li>
-          </ul>
-          <ul class="lista">
-            <li>bla</li>
-            <li>bka</li>
-            <li>hskas</li>
-          </ul>
-        </div>
-      </ion-card-content>
+
     </ion-card>
   </div>
+
   <ion-tabs>
     <ion-tab-bar slot="bottom" class="nav">
       <ion-tab-button tab="perfil" routerLink="/perfil">
