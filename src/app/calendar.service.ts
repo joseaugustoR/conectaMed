@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { gapi } from 'gapi-script';
 
-
+/*
 @Injectable({
   providedIn: 'root'
 })
+
 export class CalendarService {
   async getEvents(): Promise<any[]> {
     return new Promise((resolve, reject) => {
@@ -26,3 +27,5 @@ export class CalendarService {
     });
   }
 }
+
+*/

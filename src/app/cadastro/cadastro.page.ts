@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { Pessoa } from '../../models/pessoa';
 import { PessoaService } from '../services/pessoa.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../interfaces/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../authentication.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,6 +16,10 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
+
+  //CADASTRO ATUAL
+  regForm: FormGroup;
+
   nome: string = '';
   idade: number | null = null;
   pessoas: { id: string, data: Pessoa }[] = [];
@@ -18,14 +27,76 @@ export class CadastroPage implements OnInit {
 
   constructor(
     private pessoaService: PessoaService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    
+    
+    
+    
+    
+    //CADASTRO ATUAL
+    public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService:AuthService,public router : Router
   ) {}
 
   ngOnInit() {
     this.pessoaService.getPessoas().subscribe((data) => {
       this.pessoas = data;
     });
+
+    //CADASTRO ATUAL
+    this.regForm = this.formBuilder.group({
+      fullname:['', [Validators.required]],
+      email:['', [
+        Validators.required,
+        Validators.email,
+        Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")
+
+      ]],
+      
+      password:['', [
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.required,
+      ]],
+
+    })
+    
   }
+
+  get errorControl() {
+    return this.regForm?.controls;
+  }
+
+  async signUp() {
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    if(this.regForm?.valid) {
+      const user = await this.authService.registerUser(this.regForm.value.email,this.regForm.value.password).catch((error) => {
+        console.log(error);
+        loading.dismiss()
+      })
+
+      if(user){
+        loading.dismiss()
+        this.router.navigate(['/home'])
+
+      } else {
+        console.log('Insira informações válidas')
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   goHome() {
     this.navCtrl.navigateForward('home');
@@ -74,6 +145,13 @@ export class CadastroPage implements OnInit {
     this.idade = null;
     this.pessoaSelecionadaId = null;
   }
+
+  public userRegister: User = {};
+
+  register () {
+    console.log(this.userRegister);
+  }
+
 }
 
 
