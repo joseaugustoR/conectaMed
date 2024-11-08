@@ -20,23 +20,25 @@ export class HomePage {
     this.googleAuthService.loadGapi();
   }
 
-  async ngOnInit() {
+  async login(){
     try {
       await this.googleAuthService.signIn();
-      await this.loadEvents();
+      console.log('Usuário autenticado com sucesso');
     } catch (error) {
-      console.error('Erro ao autenticar ou carregar eventos', error);
+      console.error('Erro ao autenticar o usuário:', error);
     }
   }
 
-  async loadEvents() {
+  
+
+/*   async loadEvents() {
     try {
       this.events = await this.calendarService.getEvents();
       console.log('Eventos carregados:', this.events);
     } catch (error) {
       console.error('Erro ao buscar eventos', error);
     }
-  }
+  } */
 
   goContatos() {
     this.navCtrl.navigateRoot('contatos');
