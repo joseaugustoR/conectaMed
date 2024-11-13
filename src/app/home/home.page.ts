@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GoogleAuthService } from '../google-auth.service'; 
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';  // Certifique-se que o caminho esteja correto
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
   selector: 'app-home',
@@ -10,8 +10,7 @@ import { AuthService } from '../services/auth.service';  // Certifique-se que o 
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user: any;  // Variável para armazenar os dados do usuário
-
+  user: any;  
   constructor(
     public authService: AuthService,
     public route: Router,
@@ -19,13 +18,13 @@ export class HomePage implements OnInit {
     private googleAuthService: GoogleAuthService, 
   ) {
     this.googleAuthService.loadGapi();
-    this.user = authService.getProfile();  // Pegando os dados do perfil do usuário (se disponível)
+    this.user = authService.getProfile();  
   }
 
   async ngOnInit() {
     try {
-      await this.googleAuthService.signIn();  // Inicia o login com Google
-      await this.loadEvents();  // Carrega os eventos (caso haja algum serviço para isso)
+      await this.googleAuthService.signIn();  
+      await this.loadEvents();  
     } catch (error) {
       console.error('Erro ao autenticar ou carregar eventos', error);
     }
@@ -43,14 +42,14 @@ export class HomePage implements OnInit {
   }
 
   goContatos() {
-    this.navCtrl.navigateRoot('contatos');  // Navega para a tela de contatos
+    this.navCtrl.navigateRoot('contatos');  
   }
 
   async logOut() {
     try {
-      await this.authService.logOut();  // Chama o método logOut() do AuthService
+      await this.authService.logOut();  
     } catch (error) {
-      console.error('Erro ao deslogar:', error);  // Exibe erro, caso aconteça
+      console.error('Erro ao deslogar:', error); 
     }
   }
 }

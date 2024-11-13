@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavController } from '@ionic/angular';
-import { Pessoa } from '../../models/pessoa';
-import { PessoaService } from '../services/pessoa.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from '../interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,8 +28,8 @@ export class CadastroPage implements OnInit {
       dataNascimento: ['', Validators.required],
       genero: ['', Validators.required],
       nomeMae: ['', Validators.required],
-      cpf: ['', [Validators.required, Validators.pattern('[0-9]{11}')]], // CPF com 11 dígitos
-      celular: ['', [Validators.required, Validators.pattern('[0-9]{10,11}')]], // 10 ou 11 dígitos
+      cpf: ['', [Validators.required, Validators.pattern('[0-9]{11}')]], 
+      celular: ['', [Validators.required, Validators.pattern('[0-9]{10,11}')]], 
       cep: ['', Validators.required],
       pais: ['', Validators.required],
       estado: ['', Validators.required],

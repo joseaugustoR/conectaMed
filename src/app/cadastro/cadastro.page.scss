@@ -5,115 +5,116 @@
 }
 
 #body {
-    background-image: url('../../assets/fundo.png'); /* Caminho da imagem de fundo */
-    background-size: cover;  /* Faz com que a imagem cubra toda a tela */
-    background-position: center; /* Centraliza a imagem */
-    background-attachment: fixed; /* Faz com que a imagem fique fixa enquanto rola a página */
-    min-height: 100vh; /* Ajusta a altura mínima para ocupar toda a tela */
+    background-image: url('../../assets/fundo.png'); 
+    background-size: cover;  
+    background-position: center; 
+    background-attachment: fixed;  
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Garante que o conteúdo seja centralizado */
-    align-items: center; /* Alinha o conteúdo no centro da horizontal */
-    overflow-y: auto; /* Permite rolagem vertical */
+    justify-content: center; 
+    align-items: center; 
+    overflow-y: auto; 
 }
 
 #logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 50px; /* Distância do topo */
-    padding-bottom: 30px; /* Distância abaixo do logo */
+    padding-top: 50px; 
+    padding-bottom: 30px; 
 }
 
 img {
-    width: 250px; /* Tamanho da logo */
+    width: 250px; 
 }
 
 form {
     width: 100%;
-    max-width: 500px; /* Largura máxima do formulário */
+    max-width: 500px; 
     padding: 20px;
-    border-radius: 10px; /* Bordas arredondadas */
-    background-color: rgba(0, 129, 170, 0.7); /* Fundo translúcido do formulário */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
-    margin-top: 0; /* Remove qualquer margem extra no topo */
-    margin-bottom: 20px; /* Adiciona margem abaixo do formulário */
+    border-radius: 10px; 
+    background-color: rgba(0, 129, 170, 0.7); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    margin-top: 0; 
+    margin-bottom: 20px; 
 }
 
 #titulo {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px; /* Tamanho do título */
+    font-size: 32px; 
     color: white;
-    padding-bottom: 20px; /* Espaço abaixo do título */
+    padding-bottom: 20px; 
 }
 
 ion-input {
     --background: white;
     --color: #5A6266;
-    margin-bottom: 15px; /* Espaçamento entre os campos */
+    margin-bottom: 15px; 
     padding-left: 10px;
-    border-radius: 25px; /* Bordas arredondadas nos campos de entrada */
+    border-radius: 50px; 
     font-size: 14px;
-    height: 50px;  /* Aumenta a altura dos campos de input */
+    height: 50px;  
+    padding: 10px;
 }
 
 ion-input::part(input) {
-    padding: 0;  /* Remove o padding extra do input */
+    padding: 0;  
 }
 
 ion-button {
-    --background: #0081AA; /* Cor do fundo do botão */
-    --color: white; /* Cor do texto */
-    width: 100%; /* O botão vai ocupar toda a largura disponível */
+    --background: #0081AA; 
+    --color: white; 
+    width: 100%; 
     height: 50px;
     font-size: 18px;
-    border-radius: 25px;  /* Torna o botão arredondado */
-    margin-top: 20px;  /* Adiciona espaçamento superior */
-    transition: all 0.3s ease; /* Transição suave para todos os efeitos */
+    border-radius: 25px;  
+    margin-top: 20px;  
+    transition: all 0.3s ease; 
 }
 
 ion-button:hover {
-    --background: #5A6266; /* Muda a cor do botão ao passar o mouse */
+    --background: #5A6266; 
     --color: white;
-    cursor: pointer;  /* Muda o cursor para o ponteiro */
+    cursor: pointer;  
 }
 
 a {
     color: #041230;
-    text-decoration: none; /* Remove o sublinhado padrão */
-    position: relative; /* Necessário para o efeito de sublinhado animado */
-    font-weight: bold; /* Torna o link mais visível */
-    transition: color 0.3s ease, padding-bottom 0.3s ease; /* Transição suave para cor e padding */
-    cursor: pointer; /* Muda o cursor para o ponteiro */
+    text-decoration: none; 
+    position: relative; 
+    font-weight: bold; 
+    transition: color 0.3s ease, padding-bottom 0.3s ease; 
+    cursor: pointer; 
 }
 
 a:hover {
-    color: #0081AA;  /* Muda a cor do texto quando passa o mouse */
-    padding-bottom: 4px; /* Adiciona um pequeno espaço abaixo do link para o efeito */
+    color: #0081AA;  
+    padding-bottom: 4px; 
 }
 
 a:after {
-    content: ''; /* Cria o sublinhado */
+    content: ''; 
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: #0081AA; /* Cor do sublinhado */
-    transform: scaleX(0); /* Inicialmente o sublinhado está invisível */
-    transition: transform 0.3s ease; /* Efeito de animação */
+    background-color: #0081AA; 
+    transform: scaleX(0); 
+    transition: transform 0.3s ease; 
 }
 
 a:hover:after {
-    transform: scaleX(1); /* Quando passar o mouse, o sublinhado aparece */
+    transform: scaleX(1); 
 }
 
 #direitos {
     margin: 60px 10px 10px 10px;
     padding-bottom: 20px;
-    text-align: center; /* Centraliza o texto */
+    text-align: center; 
     color: white;
     font-size: 12px;
 }
@@ -123,8 +124,10 @@ a:hover:after {
     --color: #5A6266;
     margin-bottom: 15px;
     padding-left: 10px;
-    border-radius: 25px; /* Bordas arredondadas */
+    border-radius: 30px; 
     font-size: 14px;
-    height: 50px; /* Aumenta a altura dos campos de input */
+    height: 50px; 
   }
-  
+
+.card-cadastro {
+}

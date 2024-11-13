@@ -17,15 +17,15 @@ export class RecuperarPage implements OnInit {
 
   reset(){
     this.authService.resetPassword(this.email).then( () =>{      
-      console.log('sent'); //show confirmation dialog
+      console.log('Enviado'); 
       this.presentToast()
     })
   }
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Your reset password link has been sent on your email',
-      duration: 2000, // Duration in milliseconds
-      position: 'bottom' // Position of the toast (top, bottom, middle)
+      message: 'O link para recuperar a senha foi enviado para seu E-mail',
+      duration: 2000, 
+      position: 'bottom' 
     });
   
     toast.present();

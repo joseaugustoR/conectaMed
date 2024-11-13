@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // Certifique-se de que o caminho está correto
+import { AuthService } from '../services/auth.service'; 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -23,7 +23,6 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Definição do formulário com as validações necessárias
     this.loginForm = this.formBuilder.group({
       email: [
         '',
@@ -45,12 +44,10 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // Getter para facilitar a leitura e acesso aos controles do formulário
   get errorControl() {
     return this.loginForm?.controls;
   }
 
-  // Função de login
   async login() {
     const loading = await this.loadingCtrl.create({
       message: 'Aguarde...',
@@ -59,7 +56,7 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm?.valid) {
       try {
-        // Chama o método de login do AuthService
+
         const userCredential = await this.authService.loginUser(
           this.loginForm.value.email,
           this.loginForm.value.password
@@ -67,13 +64,11 @@ export class LoginPage implements OnInit {
 
         if (userCredential) {
           loading.dismiss();
-          // Navega para a página principal (home) se o login for bem-sucedido
           this.route.navigate(['/home']);
         }
       } catch (error) {
         loading.dismiss();
-        // Exibe o erro obtido do AuthService (erro de autenticação)
-        this.showToast(error); // Mostra o erro em um Toast
+        this.showToast(error); 
       }
     } else {
       loading.dismiss();
@@ -81,7 +76,6 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // Função para exibir um Toast com a mensagem de erro
   async showToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
