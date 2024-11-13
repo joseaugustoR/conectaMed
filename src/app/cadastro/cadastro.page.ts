@@ -6,9 +6,60 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../authentication.service';
+import { AuthService } from '../services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.page.html',
+  styleUrls: ['./cadastro.page.scss'],
+})
+export class CadastroPage implements OnInit {
+  cadastroForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.cadastroForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      nomeMae: ['', Validators.required],
+      cpf: ['', [Validators.required, Validators.pattern('[0-9]{11}')]], // CPF com 11 dígitos
+      celular: ['', [Validators.required, Validators.pattern('[0-9]{10,11}')]], // 10 ou 11 dígitos
+      cep: ['', Validators.required],
+      pais: ['', Validators.required],
+      estado: ['', Validators.required],
+      bairro: ['', Validators.required],
+      endereco: ['', Validators.required],
+    });
+  }
+
+  async onSubmit() {
+    if (this.cadastroForm.valid) {
+      const formData = this.cadastroForm.value;
+
+      try {
+        await this.authService.registerUser(formData);
+        this.router.navigate(['/home']);
+      } catch (error) {
+        console.error('Erro ao cadastrar usuário:', error);
+      }
+    }
+  }
+}
+
+
+/*
+
 
 @Component({
   selector: 'app-cadastro',
@@ -53,8 +104,8 @@ export class CadastroPage implements OnInit {
       ]],
       
       password:['', [
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
         Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
       ]],
 
     })
@@ -83,19 +134,6 @@ export class CadastroPage implements OnInit {
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   goHome() {
@@ -157,7 +195,7 @@ export class CadastroPage implements OnInit {
 
 
 
-/*
+
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UsuarioModel } from 'src/models/usuario.models';

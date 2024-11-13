@@ -1,91 +1,41 @@
-<link rel="stylesheet" href="cadastro.page.scss">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<ion-header [translucent]="true">
+</ion-header>
 
-  <ion-router-outlet id="main-content">
-    <ion-header class="cabecalho" [translucent]="true">
-      <ion-toolbar id="menu">
-        <ion-buttons slot="start">
-          <ion-menu-button>teste</ion-menu-button>
-        </ion-buttons>
-        <ion-title class="topo-side-menu">    
-          <div id="logo-topo">
-            <img src="#" alt="">
-          </div>    
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+<ion-content fullscreen>
+  <div id="body">
+    <div id="logo">
+      <img src="assets/icon/logo.png" alt="Logo">
+    </div>
 
-  <ion-card-content>
+    <ion-card class="card-cadastro">
+      <ion-card-header>
+        <ion-card-title id="titulo">Cadastro</ion-card-title>
+      </ion-card-header>
 
-    <form [formGroup]="regForm" novalidate>
-      <ion-item>
-          <ion-input
-          formControlName="fullname"
-          fill="solid"
-          label="Nome Completo"
-          labelPlacement="floating"
-          helperText="Digite um Nome Válido"
-        > </ion-input>  
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['fullname'].touched && this.regForm.controls?.['fullname'].invalid"> 
-        <ion-text *ngIf="errorControl.fullname.errors?.required">
-          Digite um nome
-        </ion-text>
-      </div>
+      <ion-card-content>
+        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+          <ion-input formControlName="nome" label="Nome" placeholder="Digite seu nome"></ion-input>
+          <ion-input formControlName="email" label="Email" placeholder="Digite seu email"></ion-input>
+          <ion-input formControlName="senha" label="Senha" type="password" placeholder="Digite sua senha"></ion-input>
+          <ion-input formControlName="dataNascimento" label="Data de Nascimento" type="date"></ion-input>
+          <ion-input formControlName="genero" label="Gênero" placeholder="Digite seu gênero"></ion-input>
+          <ion-input formControlName="nomeMae" label="Nome da Mãe" placeholder="Digite o nome da sua mãe"></ion-input>
+          <ion-input formControlName="cpf" label="CPF" placeholder="Digite seu CPF"></ion-input>
+          <ion-input formControlName="celular" label="Número de Celular" placeholder="Digite seu número de celular"></ion-input>
+          <ion-input formControlName="cep" label="CEP" placeholder="Digite seu CEP"></ion-input>
+          <ion-input formControlName="pais" label="País" placeholder="Digite seu país"></ion-input>
+          <ion-input formControlName="estado" label="Estado" placeholder="Digite seu estado"></ion-input>
+          <ion-input formControlName="bairro" label="Bairro" placeholder="Digite seu bairro"></ion-input>
+          <ion-input formControlName="endereco" label="Endereço" placeholder="Digite seu endereço"></ion-input>
 
-      <ion-item>
-          <ion-input
-          formControlName="email"
-          fill="solid"
-          label="Email"
-          labelPlacement="floating"
-          helperText="Digite um Nome Válido"
-          errorText="Invalid email"
-        ></ion-input>  
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['email'].touched && this.regForm.controls?.['email'].invalid">
-        <ion-text *ngIf="errorControl.email.errors?.required">
-          Email obrigatório
-        </ion-text>
-        <ion-text *ngIf="errorControl.email.errors?.pattern">
-          Email precisa ser válido
-        </ion-text>
-      </div>
-
-      <ion-item>
-        <ion-input 
-          formControlName="password"
-          fill="solid"
-          label="Senha"
-          labelPlacement="floating"
-          helperText="Digite uma senha válida"
-          errorText="Senha inválida"
-        ></ion-input>
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['password'].touched && this.regForm.controls?.['password'].invalid">
-        <ion-text *ngIf="errorControl.password.errors?.required">
-          Senha obrigatória
-        </ion-text>
-        <ion-text *ngIf="errorControl.password.errors?.pattern">
-          Email precisa ter ao menos: 
-          Uma letra maiúscula
-          Um número
-          8 dígitos
-        </ion-text>
-      </div>
-
-
-  
-      <ion-item>
-        <ion-button (click)="signUp()">Cadastrar</ion-button>
-      </ion-item>
-    </form>
-
-  </ion-card-content>
-  
-
+          <div id="botao">
+            <ion-button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
 
   <!--
 <div id="body">

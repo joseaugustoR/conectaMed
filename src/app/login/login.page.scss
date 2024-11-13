@@ -1,16 +1,25 @@
-*{
-    font-family: "open sans", sans-serif;
+* {
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-#body{
-    background-image: url(../../assets/fundo.png);
+#body {
+    background-image: url(../../assets/fundo.png); /* Certifique-se de que o caminho da imagem esteja correto */
+    background-size: cover;  /* Faz com que a imagem cubra toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* Faz com que a imagem fique fixa enquanto rola a página */
+    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo */
 }
 
-img{
+img {
     width: 300px;
 }
 
-#logo{
+#logo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,12 +27,15 @@ img{
     padding-bottom: 50px;
 }
 
-ion-card{
+ion-card {
     background-color: #0081AA;
     margin: 30px;
+    padding: 20px;
+    border-radius: 10px;  /* Adiciona bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
 }
 
-#titulo{
+#titulo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,61 +44,101 @@ ion-card{
     padding-bottom: 30px;
 }
 
-ion-input{
+ion-input {
     color: #5A6266;
     background-color: white;
     border-radius: 10px;
-    border-style: none;
-    font-size: 12px;
+    border: none;
+    font-size: 14px; /* Aumenta o tamanho da fonte */
     --padding-start: 10px;
-    height: 10px;
-  
+    height: 45px;  /* Ajusta a altura do campo de input */
+    margin-bottom: 15px;  /* Adiciona espaçamento entre os campos de input */
 }
 
-p{
+ion-input::part(input) {
+    padding: 0;  /* Remove o padding extra do input */
+}
+
+p {
     color: white;
 }
 
-.redefinir{
+.redefinir {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
 }
 
-#contato{
+#contato {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #041230;
 }
 
-#botao{
+#botao {
    display: flex;
    justify-content: center;
    align-items: center;
    height: 100%;
 }
 
-ion-button{
+ion-button {
     --background: white;
     --color: #5A6266;
     width: 200px;
     height: 50px;
     font-size: 18px;
+    border-radius: 25px;  /* Torna o botão arredondado */
+    margin-top: 20px;  /* Adiciona espaçamento superior */
+    transition: background 0.3s ease; /* Adiciona transição suave ao passar o mouse */
 }
 
-#termos{
+ion-button:hover {
+    --background: #5A6266;
+    --color: white;
+}
+
+#termos {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 15px;
 }
 
-a{
+a {
     color: #041230;
+    text-decoration: none; /* Remove o sublinhado do link */
+    position: relative; /* Necessário para o efeito de sublinhado animado */
+    font-weight: bold; /* Torna o link mais visível */
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
 }
 
-#direitos{
+a:hover {
+    color: #0081AA;  /* Muda a cor do texto quando passa o mouse */
+}
+
+a:before {
+    content: ''; /* Cria o sublinhado */
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Ajusta a posição do sublinhado */
+    width: 100%;
+    height: 2px;
+    background-color: #0081AA; /* Cor do sublinhado */
+    transform: scaleX(0); /* Inicialmente o sublinhado está invisível */
+    transition: transform 0.3s ease; /* Efeito de animação */
+}
+
+a:hover:before {
+    transform: scaleX(1); /* Quando passar o mouse, o sublinhado aparece */
+}
+
+#direitos {
     margin: 60px 10px 10px 10px;
     padding-bottom: 20px;
+    text-align: center; /* Centraliza o texto */
+    color: white;
+    font-size: 12px;
 }
-

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../authentication.service';
+import { AuthService } from '../services/auth.service'; // Certifique-se de que o caminho está correto
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +11,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loginForm: FormGroup
+  loginForm: FormGroup;
 
-  // email:any
-  // password:any
-  // contact:any
-
-  constructor(public loadingCtrl: LoadingController, private toastController: ToastController, private alertController: AlertController, private loadingController: LoadingController, private authService: AuthService, private router: Router, public formBuilder: FormBuilder) { }
+  constructor(
+    public loadingCtrl: LoadingController,
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private route: Router,
+    public formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
+    // Definição do formulário com as validações necessárias
     this.loginForm = this.formBuilder.group({
       email: [
         '',
@@ -30,35 +33,61 @@ export class LoginPage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      password: ['', [
-        // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
-        Validators.required,
-      ]
+      password: [
+        '',
+        [
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}'
+          ),
+          Validators.required,
+        ],
       ],
     });
   }
 
+  // Getter para facilitar a leitura e acesso aos controles do formulário
   get errorControl() {
     return this.loginForm?.controls;
   }
 
+  // Função de login
   async login() {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingCtrl.create({
+      message: 'Aguarde...',
+    });
     await loading.present();
-    if(this.loginForm?.valid) {
-      const user = await this.authService.loginUser(this.loginForm.value.email,this.loginForm.value.password).catch((error) => {
-        console.log(error);
-        loading.dismiss()
-      })
 
-      if(user){
-        loading.dismiss()
-        this.router.navigate(['/home'])
+    if (this.loginForm?.valid) {
+      try {
+        // Chama o método de login do AuthService
+        const userCredential = await this.authService.loginUser(
+          this.loginForm.value.email,
+          this.loginForm.value.password
+        );
 
-      } else {
-        console.log('Insira informações válidas');
+        if (userCredential) {
+          loading.dismiss();
+          // Navega para a página principal (home) se o login for bem-sucedido
+          this.route.navigate(['/home']);
+        }
+      } catch (error) {
+        loading.dismiss();
+        // Exibe o erro obtido do AuthService (erro de autenticação)
+        this.showToast(error); // Mostra o erro em um Toast
       }
+    } else {
+      loading.dismiss();
+      this.showToast('Por favor, preencha todos os campos corretamente.');
     }
   }
-  
+
+  // Função para exibir um Toast com a mensagem de erro
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
 }
