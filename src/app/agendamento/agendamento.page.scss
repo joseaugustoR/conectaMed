@@ -12,15 +12,15 @@ ion-toolbar{
     color: white;
     font-size: 25px;
 }
+
+#titulo{
+    margin: 20px 0 10px 10px;
+    font-size: 20px;
+}
  
 #logo{
     width: 100px;
     margin: 0 0 10px 0;
-}
-
-#body{
-    background-color: white;
-    padding: 10px 10px 250px 10px;
 }
 
 .nav {
@@ -43,3 +43,17 @@ ion-toolbar{
     color: white !important; /* Cor do texto e ícones em branco quando ativo */
     background: transparent !important; /* Fundo transparente quando ativo */
 }
+
+ion-item {
+    margin-bottom: 16px;
+}
+  
+.botao {
+    margin-top: 20px;
+}
+  
+ion-card {
+    margin-top: 20px;
+    padding: 16px;
+}
+  
