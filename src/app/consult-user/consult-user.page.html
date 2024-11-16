@@ -12,7 +12,34 @@
 
 <ion-content [fullscreen]="true">
   <div id="body">
-    <p id="titulo">Procurar usuário</p>
+    <p id="titulo">Consultar usuário</p>
+    
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="nome" label="Nome" placeholder="..."></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-input [(ngModel)]="cpf" label="CPF" type="number" placeholder="..."></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input [(ngModel)]="email" label="Email" type="email" placeholder="..."></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <!-- Exibe a mensagem de erro se algum campo estiver vazio -->
+    <ion-text color="danger" *ngIf="mensagemErro">
+      <p id="erro">{{ mensagemErro }}</p>
+    </ion-text>
+
+    <!-- Exibe a mensagem de "usuário não encontrado" -->
+    <ion-text color="danger" *ngIf="usuarioNaoEncontrado">
+      <p id="erro">Usuário não encontrado. Verifique os dados informados.</p>
+    </ion-text>
+
+    <!-- Botão para Consultar -->
+    <ion-button expand="full" id="conf" (click)="consultarUsuario()">Consultar</ion-button>
   </div>
 </ion-content>
+
