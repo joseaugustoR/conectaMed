@@ -36,6 +36,10 @@ const routes: Routes = [
   },  {
     path: 'component',
     loadChildren: () => import('./component/component.module').then( m => m.ComponentPageModule)
+  },
+  {
+    path: 'consult-user',
+    loadChildren: () => import('./consult-user/consult-user.module').then( m => m.ConsultUserPageModule)
   }
 
 
