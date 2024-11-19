@@ -20,17 +20,9 @@ export class HomePage implements OnInit {
     this.googleAuthService.loadGapi();
     this.user = authService.getProfile();  
   }
+  
 
-  async ngOnInit() {
-    try {
-      await this.googleAuthService.signIn();  
-      await this.loadEvents();  
-    } catch (error) {
-      console.error('Erro ao autenticar ou carregar eventos', error);
-    }
-  }
-
-  async loadEvents() {
+/*   async loadEvents() {
     try {
       // Se você tiver o serviço de calendário, carregue os eventos aqui.
       // Exemplo:
@@ -39,7 +31,7 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Erro ao buscar eventos', error);
     }
-  }
+  } */
 
   goContatos() {
     this.navCtrl.navigateRoot('contatos');  

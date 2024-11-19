@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
 </ion-header>
 
@@ -36,6 +37,47 @@
     </ion-card>
   </div>
 </ion-content>
+
+
+<link rel="stylesheet" href="cadastro.page.scss">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <ion-router-outlet id="main-content">
+    <ion-header class="cabecalho" [translucent]="true">
+      <ion-toolbar id="menu">
+        <ion-buttons slot="start">
+          <ion-menu-button>teste</ion-menu-button>
+        </ion-buttons>
+        <ion-title class="topo-side-menu">    
+          <div id="logo-topo">
+            <img src="#" alt="">
+          </div>    
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-card-content>
+      <ion-item>
+          <ion-input
+          type="nome"
+          fill="solid"
+          label="Nome Completo"
+          labelPlacement="floating"
+          helperText="Digite um Nome Válido"
+          errorText="Invalid email"
+          ngModel
+          email
+        ></ion-input>  
+      </ion-item>
+  
+      <ion-item>
+        <ion-button (click)="goHome()">Finalizar</ion-button>
+      </ion-item>
+  
+    </ion-card-content>
+    </ion-router-outlet>
 
   <!--
 <div id="body">

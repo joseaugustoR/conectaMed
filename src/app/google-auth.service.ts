@@ -5,30 +5,41 @@ import { gapi } from 'gapi-script';
   providedIn: 'root'
 })
 export class GoogleAuthService {
-  private clientId = '1032872153081-1q16c3t3iglpga76fq34hjm14r93p5ft.apps.googleusercontent.com'; // Substitua pelo seu Client ID
+  clientId = '1032872153081-1q16c3t3iglpga76fq34hjm14r93p5ft.apps.googleusercontent.com';
 
   constructor() {
     this.loadGapi();
   }
 
-  loadGapi() {
-    gapi.load('client:auth2', () => {
-      gapi.auth2.init({
-        client_id: this.clientId,
-        scope: 'https://www.googleapis.com/auth/calendar'
+  async loadGapi(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      gapi.load('client:auth2', () => {
+        gapi.auth2
+          .init({
+            client_id: this.clientId,
+            scope: 'https://www.googleapis.com/auth/calendar/'
+          })
+          .then(() => resolve())
+          .catch((error: any) => {
+            console.error('Erro ao inicializar o gapi.auth2:', error);
+            reject(error);
+          });
       });
     });
   }
 
-  signIn() {
+  async signIn() {
+    await this.loadGapi();
     return gapi.auth2.getAuthInstance().signIn();
   }
 
-  signOut() {
+  async signOut() {
+    await this.loadGapi();
     return gapi.auth2.getAuthInstance().signOut();
   }
 
-  isSignedIn() {
+  async isSignedIn(): Promise<boolean> {
+    await this.loadGapi();
     return gapi.auth2.getAuthInstance().isSignedIn.get();
   }
 }
