@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <p id="title">Início</p>
+    <ion-title>Bem-vindo, Usuário</ion-title>
     <ion-buttons slot="end">
-      <img id="logo" src="assets/logo_branca.png" alt="Logo">
+      <ion-button (click)="logOut()">Logout</ion-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -30,6 +30,17 @@
     </ion-card-header>
   </ion-card>
 
+  <ion-content>
+    <!-- Botão de logout -->
+    <ion-button (click)="logOut()" color="danger">Sair</ion-button>
+  </ion-content>0
+
+  <!--<ion-title class="">
+    {{user.user.email}}
+  </ion-title>
+
+
+
   <ion-list *ngIf="events.length > 0">
     <ion-item *ngFor="let event of events">
       <ion-label>
@@ -38,4 +49,28 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  -->
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom" class="nav">
+      <ion-tab-button tab="perfil" routerLink="/perfil">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="inicio">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Início</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="contatos" routerLink="/contatos">
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Contatos</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="criadores" routerLink="/criadores">
+        <ion-icon name="logo-github"></ion-icon>
+        <ion-label>Criadores</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
 </ion-content>
