@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importação para usar o Firestore
 import { first } from 'rxjs/operators';
+import { AngularFireFunctions } from '@angular/fire/compat/functions'; // Importar o serviço de funções
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +16,31 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private fns: AngularFireFunctions
   ) {}
 
-  async loginUser(email: string, password: string) {
+
+
+  async loginUser(email: string, password: string): Promise<any> {
     try {
-      const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
-      return userCredential;
+      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+  
+      // Recuperando a role do Firestore
+      const userRef = firebase.firestore().collection('users').doc(user.uid);
+      const userDoc = await userRef.get();
+      const userData = userDoc.data();
+  
+      // Usando a notação de índice para acessar a role
+      return {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        role: userData ? userData['role'] : null,  // Acessando a role com a notação de índice
+      };
     } catch (error) {
-      throw this.handleError(error);
+      throw new Error('Erro ao autenticar usuário: ' + error.message);
     }
   }
 
@@ -74,56 +92,65 @@ export class AuthService {
         userData.email,
         userData.senha
       );
-
       const userId = userCredential.user?.uid;
-
-      await this.firestore.collection('usuarios').doc(userId).set({
-        nome: userData.nome,
-        email: userData.email,
-        dataNascimento: userData.dataNascimento,
-        genero: userData.genero,
-        nomeMae: userData.nomeMae,
-        cpf: userData.cpf,
-        celular: userData.celular,
-        cep: userData.cep,
-        pais: userData.pais,
-        estado: userData.estado,
-        bairro: userData.bairro,
-        endereco: userData.endereco,
-      });
-
-      this.router.navigate(['/home']);
-    } catch (error) {
-      console.error('Erro ao cadastrar usuário:', error);
-      throw error;
-    }
-  }
-
-async getProfile() {
-    try {
-      const user = await this.afAuth.currentUser;
-      if (!user) return null;
   
-      const userDoc = this.firestore.collection('usuarios').doc(user.uid);
-      const userData = await userDoc.valueChanges().pipe(first()).toPromise();
+      // Salva o perfil do usuário no Firestore com role padrão "user"
+      if (userId) {
+        await this.firestore.collection('usuarios').doc(userId).set({
+          nome: userData.nome,
+          email: userData.email,
+          role: "user", // Role padrão
+          dataNascimento: userData.dataNascimento,
+          genero: userData.genero,
+          nomeMae: userData.nomeMae,
+          cpf: userData.cpf,
+          celular: userData.celular,
+          cep: userData.cep,
+          pais: userData.pais,
+          estado: userData.estado,
+          bairro: userData.bairro,
+          endereco: userData.endereco,
+        });
   
-      if (userData && typeof userData === 'object') {
-        return {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-          ...userData,
-        };
+        console.log('Novo usuário cadastrado com sucesso!');
+        return true;
       } else {
-        console.error('Ocorreu um erro: dados do usuário não estão disponíveis');
-        return null;
+        throw new Error('Erro ao criar o usuário. ID não encontrado.');
       }
     } catch (error) {
-      console.error('Erro ao obter perfil:', error);
-      return null;
+      console.error('Erro ao cadastrar usuário:', error);
+      throw error; // Lança o erro para ser tratado no componente
     }
   }
+  
+  
+
+async getProfile() {
+  try {
+      const user = await this.afAuth.currentUser;
+      if (!user) return null;
+
+      const userDoc = this.firestore.collection('usuarios').doc(user.uid);
+      const userData = await userDoc.valueChanges().pipe(first()).toPromise();
+
+      if (userData && typeof userData === 'object') {
+          return {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              photoURL: user.photoURL,
+              role: userData['role'], // Aqui você retorna a role do Firestore
+              ...userData,
+          };
+      } else {
+          console.error('Ocorreu um erro: dados do usuário não estão disponíveis');
+          return null;
+      }
+  } catch (error) {
+      console.error('Erro ao obter perfil:', error);
+      return null;
+  }
+}
 
 
 async getUserData(uid: string) {
@@ -135,5 +162,17 @@ async getUserData(uid: string) {
     return null; 
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

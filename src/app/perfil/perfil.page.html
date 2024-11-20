@@ -6,7 +6,6 @@
 
 <ion-content>
   <div *ngIf="userProfile">
-    <ion-card>
       <ion-card-header>
         <ion-card-title>{{ userProfile.displayName || userProfile.nome || 'Nome não disponível' }}</ion-card-title>
       </ion-card-header>
@@ -22,7 +21,12 @@
         <p><strong>Estado:</strong> {{ userProfile.estado || 'Não disponível' }}</p>
         <p><strong>Bairro:</strong> {{ userProfile.bairro || 'Não disponível' }}</p>
       </ion-card-content>
-    </ion-card>
+
+        <ion-button *ngIf="isAdmin" expand="full" routerLink="/cadastro">
+          Cadastrar Novo Usuário
+        </ion-button>
+
+
 
     <div *ngIf="userProfile.photoURL">
       <img [src]="userProfile.photoURL" alt="Foto de perfil" class="profile-photo">

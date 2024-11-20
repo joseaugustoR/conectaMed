@@ -1,6 +1,4 @@
-
-<ion-header [translucent]="true">
-</ion-header>
+<ion-header [translucent]="true"></ion-header>
 
 <ion-content fullscreen>
   <div id="body">
@@ -8,33 +6,27 @@
       <img src="assets/icon/logo.png" alt="Logo">
     </div>
 
-    <ion-card class="card-cadastro">
-      <ion-card-header>
-        <ion-card-title id="titulo">Cadastro</ion-card-title>
-      </ion-card-header>
+    <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+      <ion-input formControlName="nome" label="Nome" placeholder="Digite seu nome"></ion-input>
+      <ion-input formControlName="email" label="Email" placeholder="Digite seu email"></ion-input>
+      <ion-input formControlName="senha" label="Senha" type="password" placeholder="Digite sua senha"></ion-input>
+      <ion-input formControlName="dataNascimento" label="Data de Nascimento" type="date"></ion-input>
+      <ion-input formControlName="genero" label="Gênero" placeholder="Digite seu gênero"></ion-input>
+      <ion-input formControlName="nomeMae" label="Nome da Mãe" placeholder="Digite o nome da sua mãe"></ion-input>
+      <ion-input formControlName="cpf" label="CPF" placeholder="Digite seu CPF"></ion-input>
+      <ion-input formControlName="celular" label="Número de Celular" placeholder="Digite seu número de celular"></ion-input>
+      <ion-input formControlName="cep" label="CEP" placeholder="Digite seu CEP"></ion-input>
+      <ion-input formControlName="pais" label="País" placeholder="Digite seu país"></ion-input>
+      <ion-input formControlName="estado" label="Estado" placeholder="Digite seu estado"></ion-input>
+      <ion-input formControlName="bairro" label="Bairro" placeholder="Digite seu bairro"></ion-input>
+      <ion-input formControlName="endereco" label="Endereço" placeholder="Digite seu endereço"></ion-input>
 
-      <ion-card-content>
-        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-          <ion-input formControlName="nome" label="Nome" placeholder="Digite seu nome"></ion-input>
-          <ion-input formControlName="email" label="Email" placeholder="Digite seu email"></ion-input>
-          <ion-input formControlName="senha" label="Senha" type="password" placeholder="Digite sua senha"></ion-input>
-          <ion-input formControlName="dataNascimento" label="Data de Nascimento" type="date"></ion-input>
-          <ion-input formControlName="genero" label="Gênero" placeholder="Digite seu gênero"></ion-input>
-          <ion-input formControlName="nomeMae" label="Nome da Mãe" placeholder="Digite o nome da sua mãe"></ion-input>
-          <ion-input formControlName="cpf" label="CPF" placeholder="Digite seu CPF"></ion-input>
-          <ion-input formControlName="celular" label="Número de Celular" placeholder="Digite seu número de celular"></ion-input>
-          <ion-input formControlName="cep" label="CEP" placeholder="Digite seu CEP"></ion-input>
-          <ion-input formControlName="pais" label="País" placeholder="Digite seu país"></ion-input>
-          <ion-input formControlName="estado" label="Estado" placeholder="Digite seu estado"></ion-input>
-          <ion-input formControlName="bairro" label="Bairro" placeholder="Digite seu bairro"></ion-input>
-          <ion-input formControlName="endereco" label="Endereço" placeholder="Digite seu endereço"></ion-input>
+      <div id="botao">
+        <ion-button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</ion-button>
+      </div>
 
-          <div id="botao">
-            <ion-button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</ion-button>
-          </div>
-        </form>
-      </ion-card-content>
-    </ion-card>
+      <!-- Botão para voltar para a home -->
+      <ion-button expand="full" color="secondary" (click)="goHome()">Voltar para a Home</ion-button>
+    </form>
   </div>
 </ion-content>
-

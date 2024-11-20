@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; 
+import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -56,19 +56,26 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm?.valid) {
       try {
-
+        // Login do usuário
         const userCredential = await this.authService.loginUser(
           this.loginForm.value.email,
           this.loginForm.value.password
         );
 
+        // Verifica a role do usuário após login
         if (userCredential) {
           loading.dismiss();
-          this.route.navigate(['/home']);
+
+          // Redireciona baseado na role do usuário
+          if (userCredential.role === 'admin') {
+            this.route.navigate(['/admin-dashboard']); // Redireciona para a tela de admin
+          } else {
+            this.route.navigate(['/home']); // Redireciona para a home normal
+          }
         }
       } catch (error) {
         loading.dismiss();
-        this.showToast(error); 
+        this.showToast(error.message); // Exibe o erro no toast
       }
     } else {
       loading.dismiss();
