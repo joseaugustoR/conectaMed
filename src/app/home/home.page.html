@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <p id="title">Início</p>
+    <ion-title>Bem-vindo, Usuário</ion-title>
     <ion-buttons slot="end">
-      <img id="logo" src="assets/logo_branca.png" alt="Logo">
+      <ion-button (click)="logOut()">Logout</ion-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card class="consultas" routerLink="/agendamento">
+  <ion-card class="consultas" [routerLink]="['/agendamento']">
     <img src="assets/marcar.jpg" class="custom-image">
     <ion-card-header>
       <ion-card-title>Marcar Consulta</ion-card-title>
@@ -22,7 +22,7 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-card class="consultas" a="#">
+  <ion-card class="consultas">
     <img src="assets/consulta.jpg" class="custom-image">
     <ion-card-header>
       <ion-card-title>Minhas Consultas</ion-card-title>
@@ -30,14 +30,7 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-list *ngIf="events.length > 0">
-    <ion-item *ngFor="let event of events">
-      <ion-label>
-        <h2>{{ event.summary }}</h2>
-        <p>{{ event.start.dateTime || event.start.date }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+
 
   <ion-tabs>
     <ion-tab-bar slot="bottom" class="nav">
@@ -59,4 +52,23 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
 </ion-content>
+
+
+<!--<ion-title class="">
+    {{user.user.email}}
+  </ion-title>
+
+
+
+  <ion-list *ngIf="events.length > 0">
+    <ion-item *ngFor="let event of events">
+      <ion-label>
+        <h2>{{ event.summary }}</h2>
+        <p>{{ event.start.dateTime || event.start.date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  -->

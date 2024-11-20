@@ -1,44 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { GoogleAuthService } from '../google-auth.service';
-import { CalendarService } from '../calendar.service';
-import { CalendarEvent } from '../calendar-event.model'; // Ajuste o caminho
+import { GoogleAuthService } from '../google-auth.service'; 
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  events: CalendarEvent[] = []; // Usando a interface CalendarEvent
+export class HomePage implements OnInit {
+  user: any;  
 
   constructor(
+    public authService: AuthService,
+    public route: Router,
     public navCtrl: NavController,
-    private googleAuthService: GoogleAuthService,
-    private calendarService: CalendarService
+    private googleAuthService: GoogleAuthService, 
   ) {
     this.googleAuthService.loadGapi();
+    this.user = authService.getProfile();  
   }
 
-  async ngOnInit() {
-    try {
-      await this.googleAuthService.signIn();
-      await this.loadEvents();
-    } catch (error) {
-      console.error('Erro ao autenticar ou carregar eventos', error);
-    }
+  ngOnInit(): void {
+    console.log('HomePage initialized');
   }
+  
 
-  async loadEvents() {
+/*   async loadEvents() {
     try {
-      this.events = await this.calendarService.getEvents();
-      console.log('Eventos carregados:', this.events);
+      // Se você tiver o serviço de calendário, carregue os eventos aqui.
+      // Exemplo:
+      // this.events = await this.calendarService.getEvents();
+      // console.log('Eventos carregados:', this.events);
     } catch (error) {
       console.error('Erro ao buscar eventos', error);
     }
-  }
+  } */
 
   goContatos() {
-    this.navCtrl.navigateRoot('contatos');
+    this.navCtrl.navigateRoot('contatos');  
+  }
+
+  async logOut() {
+    try {
+      await this.authService.logOut();  
+    } catch (error) {
+      console.error('Erro ao deslogar:', error); 
+    }
   }
 }

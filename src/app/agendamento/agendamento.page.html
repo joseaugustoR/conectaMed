@@ -2,99 +2,78 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <ion-header [translucent]="true">
-  <ion-toolbar >
+  <ion-toolbar>
     <p id="title">Agendamento</p>
     <ion-buttons slot="end">
       <img id="logo" src="assets/logo_branca.png" alt="Logo">
     </ion-buttons>
   </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="body">
- <p id="titulo">Agendar consulta</p>
- <ion-list>
-  <ion-item>
-    <ion-select
-      interface="popover"
-      toggleIcon="add"
-      expandedIcon="remove"
-      aria-label="consult"
-      placeholder="Consulta"
-    >
-      <ion-select-option value="Clínico">Clínico geral</ion-select-option>
-      <ion-select-option value="Oftamologista">Oftamologista</ion-select-option>
-      <ion-select-option value="Ginecologista">Ginecologista</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-select
-      interface="popover"
-      toggleIcon="add"
-      expandedIcon="remove"
-      aria-label="location"
-      placeholder="Local"
-    >
-      <ion-select-option value="bangu">Bangu</ion-select-option>
-      <ion-select-option value="cg">Campo grande</ion-select-option>
-      <ion-select-option value="sc">Santa cruz</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-select
-      interface="popover"
-      toggleIcon="add"
-      expandedIcon="remove"
-      aria-label="date"
-      placeholder="Data"
-    >
-      <ion-select-option value="ddoze">Dia 12</ion-select-option>
-      <ion-select-option value="dtreze">Dia 13</ion-select-option>
-      <ion-select-option value="dcatorze">Dia 14</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-select
-      interface="popover"
-      toggleIcon="add"
-      expandedIcon="remove"
-      aria-label="hoour"
-      placeholder="Hora"
-    >
-    <ion-select-option value="dez">10:00</ion-select-option>
-    <ion-select-option value="meiodia">12:00</ion-select-option>
-    <ion-select-option value="tres">15:00</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-</div>
+    <p id="titulo">Agendar consulta</p>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom" class="nav">
-    <ion-tab-button tab="perfil" routerLink="/perfil">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Perfil</ion-label>
-    </ion-tab-button>
+    <!-- Formulário de Seleção -->
+    <ion-list>
+      <ion-item>
+        <ion-select [(ngModel)]="consulta" interface="popover" placeholder="Consulta">
+          <ion-select-option value="Clínico">Clínico geral (Dr. Alfred)</ion-select-option>
+          <ion-select-option value="Oftamologista">Oftalmologista</ion-select-option>
+          <ion-select-option value="Ginecologista">Ginecologista (Dr. Amélia)</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
 
-    <ion-tab-button tab="inicio" routerLink="/home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Início</ion-label>
-    </ion-tab-button>
+    <ion-list>
+      <ion-item>
+        <ion-select [(ngModel)]="local" interface="popover" placeholder="Local">
+          <ion-select-option value="Bangu">Bangu (R. Santa Cecília, 686) </ion-select-option>
+          <ion-select-option value="Campo Grande">Campo Grande (Est. do Cabuçu, 1005) </ion-select-option>
+          <ion-select-option value="Santa Cruz">Santa Cruz (R. Felipe Cardoso, 1027) </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
 
-    <ion-tab-button tab="contatos" routerLink="/contatos">
-      <ion-icon name="call"></ion-icon>
-      <ion-label>Contatos</ion-label>
-    </ion-tab-button>
+    <ion-list>
+      <ion-item>
+        <ion-select [(ngModel)]="data" interface="popover" placeholder="Data">
+          <ion-select-option value="Dia 12">Dia 12 de novembro</ion-select-option>
+          <ion-select-option value="Dia 13">Dia 13 de novembro</ion-select-option>
+          <ion-select-option value="Dia 14">Dia 14 de novembro</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
 
-    <ion-tab-button tab="criadores" routerLink="/criadores">
-      <ion-icon name="logo-github"></ion-icon>
-      <ion-label>Criadores</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+    <ion-list>
+      <ion-item>
+        <ion-select [(ngModel)]="hora" interface="popover" placeholder="Hora">
+          <ion-select-option value="10:00">10:00</ion-select-option>
+          <ion-select-option value="12:00">12:00</ion-select-option>
+          <ion-select-option value="15:00">15:00</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <!-- Exibe a mensagem de erro se algum campo estiver vazio -->
+    <ion-text color="danger" *ngIf="mensagemErro">
+      <p id="erro">{{ mensagemErro }}</p>
+    </ion-text>
+
+    <!-- Botão para Exibir as Informações -->
+    <ion-button expand="full" id="conf" (click)="exibirInformacoes()">Confirmar Agendamento</ion-button>
+
+    <!-- Card com as Informações Preenchidas -->
+    <ion-card *ngIf="informacoes">
+      <ion-card-header>
+        <ion-card-title>Agendamento Confirmado</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Consulta:</strong> {{ informacoes.consulta }}</p>
+        <p><strong>Local:</strong> {{ informacoes.local }}</p>
+        <p><strong>Data:</strong> {{ informacoes.data }}</p>
+        <p><strong>Hora:</strong> {{ informacoes.hora }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

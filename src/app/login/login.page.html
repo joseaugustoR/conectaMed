@@ -3,33 +3,49 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <ion-header [translucent]="true">
-
 </ion-header>
 <ion-content [fullscreen]="true">
-<div id="body">
-  <div id="logo">
-  <img src="assets/icon/logo.png" alt="">
-  </div>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title id="titulo">Login</ion-card-title>
-    </ion-card-header>
+  <div id="body">
+    <div id="logo">
+      <img src="assets/icon/logo.png" alt="">
+    </div>
 
-    <ion-card-content>
-      <ion-input label="Email"  placeholder="..." class="caixa" ></ion-input>
-      <br>
-      <ion-input type="password" label="Senha" placeholder="...">
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
-      <p class="redefinir">Esqueceu sua senha?</p>
-        <p class="redefinir">Entre em <a href=""> contato</a></p>
-      <br>
-      <div id="botao">
-        <ion-button (click)="goHome()">Entrar</ion-button>
-      </div>
-      <a href="" id="termos">Termos de uso</a>
-    </ion-card-content>
-  </ion-card>
-  <p id="direitos">©ConectaMed - Todos os direitos reservados</p>
-</div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title id="titulo">Login</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm">
+          <ion-input formControlName="email" label="Email" placeholder="..." class="caixa"></ion-input><br>
+          <div *ngIf="this.loginForm.controls?.['email'].touched && this.loginForm.controls?.['email'].invalid">
+            <ion-text *ngIf="errorControl.email.errors?.required">Email obrigatório</ion-text>
+            <ion-text *ngIf="errorControl.email.errors?.pattern">Email precisa ser válido</ion-text>
+          </div>
+
+          <ion-input formControlName="password" type="password" label="Senha" placeholder="...">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+          <div *ngIf="this.loginForm.controls?.['password'].touched && this.loginForm.controls?.['password'].invalid">
+            <ion-text *ngIf="errorControl.password.errors?.required">Senha obrigatória</ion-text>
+            <ion-text *ngIf="errorControl.password.errors?.pattern">
+              Senha precisa ter ao menos: 
+              Uma letra maiúscula, Um número, 8 dígitos
+            </ion-text>
+          </div>
+
+          <a class="redefinir" [routerLink]="['/recuperar']">Esqueceu sua senha?</a>
+          <p class="redefinir">Entre em <a href="">   contato</a></p><br>
+
+          <div id="botao">
+            <ion-button (click)="login()">Entrar</ion-button>
+          </div>
+
+          <a href="" id="termos">Termos de uso</a>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <p id="direitos">©ConectaMed - Todos os direitos reservados</p>
+  </div>
 </ion-content>

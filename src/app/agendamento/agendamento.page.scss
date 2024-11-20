@@ -12,34 +12,34 @@ ion-toolbar{
     color: white;
     font-size: 25px;
 }
+
+#titulo{
+    margin: 20px 0 10px 10px;
+    font-size: 20px;
+}
  
 #logo{
     width: 100px;
     margin: 0 0 10px 0;
 }
 
-#body{
-    background-color: white;
-    padding: 10px 10px 250px 10px;
+ion-item {
+    margin-bottom: 16px;
+}
+  
+.botao {
+    margin-top: 20px;
+}
+  
+ion-card {
+    margin-top: 20px;
+    padding: 16px;
 }
 
-.nav {
-    background-color: #0081AA !important; /* Cor de fundo das tabs */
+#erro{
+    margin: 10px;
 }
-  
-.nav ion-tab-button {
-    color: white !important; /* Cor do texto e ícones em branco */
-    background: transparent !important; /* Fundo transparente */
-}
-  
-.nav ion-tab-button:hover,
-.nav ion-tab-button:focus,
-.nav ion-tab-button:active {
-    color: white !important; /* Cor do texto e ícones em branco no hover, focus e active */
-    background: transparent !important; /* Fundo transparente */
-}
-  
-.nav ion-tab-button.activated {
-    color: white !important; /* Cor do texto e ícones em branco quando ativo */
-    background: transparent !important; /* Fundo transparente quando ativo */
+
+#conf{
+    --background:#0081AA;
 }
