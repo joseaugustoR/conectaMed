@@ -54,11 +54,15 @@ const routes: Routes = [
   {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
-
+  },
+  {
     path: 'consult-user',
     loadChildren: () => import('./consult-user/consult-user.module').then( m => m.ConsultUserPageModule)
 
-  }
+  },  {
+    path: 'minhas-consultas',
+    loadChildren: () => import('./minhas-consultas/minhas-consultas.module').then( m => m.MinhasConsultasPageModule)
+  },
 
 
 ];

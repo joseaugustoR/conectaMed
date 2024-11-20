@@ -11,3 +11,37 @@ ion-toolbar{
     color: white;
     font-size: 25px;
   }
+
+  .perfil-container {
+    padding: 16px;
+  }
+  
+  ion-card {
+    padding: 16px;
+    margin: 10px 0;
+  }
+  
+  .perfil-info {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .perfil-info p {
+    margin: 8px 0;
+  }
+  
+  ion-card-header {
+    text-align: center;
+  }
+  
+  ion-card-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #3880ff;
+  }
+  
+  ion-card-subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+  

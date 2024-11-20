@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Minhas Consultas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="consultas.length > 0; else noConsultas">
+    <ion-item *ngFor="let consulta of consultas">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ consulta.consulta }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p><strong>Local:</strong> {{ consulta.local }}</p>
+          <p><strong>Data:</strong> {{ consulta.data }}</p>
+          <p><strong>Hora:</strong> {{ consulta.hora }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noConsultas>
+    <ion-text color="medium">
+      <p style="text-align: center; margin-top: 20px;">Nenhuma consulta agendada.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

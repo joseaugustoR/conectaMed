@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomePage implements OnInit {
   user: any;  
+
   constructor(
     public authService: AuthService,
     public route: Router,
@@ -19,6 +20,10 @@ export class HomePage implements OnInit {
   ) {
     this.googleAuthService.loadGapi();
     this.user = authService.getProfile();  
+  }
+
+  ngOnInit(): void {
+    console.log('HomePage initialized');
   }
   
 

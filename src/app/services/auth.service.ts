@@ -2,47 +2,50 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importação para usar o Firestore
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private firestore: AngularFirestore) {}
+  constructor(
+    public afAuth: AngularFireAuth,
+    private router: Router,
+    private firestore: AngularFirestore
+  ) {}
 
-  // Método de login com email e senha
   async loginUser(email: string, password: string) {
     try {
       const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
-      // O usuário foi autenticado com sucesso
-      return userCredential;  // Retorna as credenciais do usuário
+      return userCredential;
     } catch (error) {
-      throw this.handleError(error);  // Captura e propaga o erro para ser tratado no componente
+      throw this.handleError(error);
     }
   }
 
-  // Método de login com o Google
   async googleLogin() {
     try {
       const result = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      return result.user; // Retorna as informações do usuário logado
+      return result.user;
     } catch (error) {
-      throw this.handleError(error);  // Captura e propaga o erro para ser tratado no componente
+      throw this.handleError(error);
     }
   }
 
   async logOut() {
     try {
-      await this.afAuth.signOut();  // Chama o método correto de signOut do AngularFireAuth
+      await this.afAuth.signOut();
       console.log('Usuário deslogado com sucesso');
-      this.router.navigate(['/login']);  // Redireciona para a página de login após o logout
+      this.router.navigate(['/login']);
     } catch (error) {
-      console.log("Erro ao sair:", error);  // Log de falha, caso ocorra algum erro
-      throw error;  // Lança o erro para ser tratado no componente
-    } }
+      console.log("Erro ao sair:", error);
+      throw error;
+    }
+  }
 
-  // Função para tratar os erros de autenticação do Firebase
   private handleError(error: firebase.auth.Error) {
     let errorMessage = 'Ocorreu um erro inesperado.';
     if (error.code === 'auth/user-not-found') {
@@ -57,36 +60,21 @@ export class AuthService {
     return errorMessage;
   }
 
-  // Função para obter o usuário autenticado (caso esteja logado)
-  async getProfile() {
-    try {
-      return await this.afAuth.currentUser;  // Retorna o usuário atual, se autenticado
-    } catch (error) {
-      console.log('Erro ao obter perfil:', error);
-      return null;  // Se ocorrer um erro, retorna null
-    }
-  }
-
-  // Função para redefinir a senha
   async resetPassword(email: string) {
     try {
       return await this.afAuth.sendPasswordResetEmail(email);
     } catch (error) {
-      throw this.handleError(error);  // Captura e propaga o erro para ser tratado no componente
+      throw this.handleError(error);
     }
   }
 
-
-
   async registerUser(userData: any) {
     try {
-      // Cria um novo usuário com email e senha
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(
         userData.email,
         userData.senha
       );
 
-      // Salva os dados adicionais do usuário no Firestore
       const userId = userCredential.user?.uid;
 
       await this.firestore.collection('usuarios').doc(userId).set({
@@ -104,7 +92,6 @@ export class AuthService {
         endereco: userData.endereco,
       });
 
-      // Redireciona para a página inicial após o cadastro
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
@@ -112,5 +99,41 @@ export class AuthService {
     }
   }
 
+async getProfile() {
+    try {
+      const user = await this.afAuth.currentUser;
+      if (!user) return null;
+  
+      const userDoc = this.firestore.collection('usuarios').doc(user.uid);
+      const userData = await userDoc.valueChanges().pipe(first()).toPromise();
+  
+      if (userData && typeof userData === 'object') {
+        return {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          ...userData,
+        };
+      } else {
+        console.error('Ocorreu um erro: dados do usuário não estão disponíveis');
+        return null;
+      }
+    } catch (error) {
+      console.error('Erro ao obter perfil:', error);
+      return null;
+    }
+  }
+
+
+async getUserData(uid: string) {
+  try {
+    const userDoc = await this.firestore.collection('usuarios').doc(uid).get().toPromise();
+    return userDoc.exists ? userDoc.data() : null;
+  } catch (error) {
+    console.error('Erro ao buscar dados do Firestore:', error);
+    return null; 
+  }
+}
 
 }
