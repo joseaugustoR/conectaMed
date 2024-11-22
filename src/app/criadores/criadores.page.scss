@@ -99,3 +99,24 @@ ion-content {
     width: 100px;
     height: 100px;
 }
+.nome p {
+    text-align: justify;
+}
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: none;
+    background-color: #005670; /* Cor de fundo do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove sublinhado dos links */
+    color: inherit; /* Herda a cor do texto */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Negrito */
+    transition: background-color 0.3s;
+    margin: 5px; /* Espaçamento entre os botões */
+  }
+  .icon-button ion-icon {
+    font-size: 24px; /* Tamanho do ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+  }
