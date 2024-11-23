@@ -24,6 +24,14 @@ const routes: Routes = [
         loadChildren: () => import('../criadores/criadores.module').then(m => m.CriadoresPageModule)
       },
       {
+        path: 'agendamento',
+        loadChildren: () => import('../agendamento/agendamento.module').then(m => m.AgendamentoPageModule)
+      },
+      {
+        path: 'minhas-consultas',
+        loadChildren: () => import('../minhas-consultas/minhas-consultas.module').then(m => m.MinhasConsultasPageModule)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
