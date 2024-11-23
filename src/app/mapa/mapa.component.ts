@@ -1,10 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
   styleUrls: ['../../../node_modules/leaflet/dist/leaflet.css','./mapa.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MapaComponent implements OnInit, AfterViewInit {
   private map: L.Map;
