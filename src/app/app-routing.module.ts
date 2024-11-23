@@ -38,11 +38,6 @@ const routes: Routes = [
     path: 'component',
     loadChildren: () => import('./component/component.module').then( m => m.ComponentPageModule)
   },
-  {
-
-    path: 'agendamento',
-    loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
-  },
   { 
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
@@ -64,7 +59,6 @@ const routes: Routes = [
     path: 'minhas-consultas',
     loadChildren: () => import('./minhas-consultas/minhas-consultas.module').then( m => m.MinhasConsultasPageModule)
   },
-
 
 ];
 

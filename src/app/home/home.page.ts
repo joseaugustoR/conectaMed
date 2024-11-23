@@ -64,4 +64,15 @@ export class HomePage implements OnInit {
       this.route.navigate(['/cadastro']);
     }
   }
+
+  // Função de navegação programática para Agendamento
+  goToAgendamento() {
+    this.route.navigate(['/agendamento']); // Navega para a página de Agendamento
+  }
+  
+  // Função de navegação programática para Minhas Consultas
+  goToMinhasConsultas() {
+    this.route.navigate(['/minhas-consultas']); // Navega para a página de Minhas Consultas
+  }
+
 }

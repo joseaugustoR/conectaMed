@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
 
           // Redireciona baseado na role do usuário
           if (userCredential.role === 'admin') {
-            this.route.navigate(['/admin-dashboard']); // Redireciona para a tela de admin
+            this.route.navigate(['/home']); // Redireciona para a tela de admin
           } else {
             this.route.navigate(['/home']); // Redireciona para a home normal
           }

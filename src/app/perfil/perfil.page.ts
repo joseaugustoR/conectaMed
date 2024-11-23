@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service'; // Importe o AuthService para obter dados do usuário
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,28 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  isAdmin: boolean = false;  // Variável para verificar se o usuário é admin
+  isAdmin: boolean = false;  
+  userProfile: any = null; // Inicialize como `null` para facilitar o carregamento condicional
 
-  userProfile: any = {}; // Objeto para armazenar os dados do perfil
-
-  constructor(private authService: AuthService,
-    public router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.loadUserProfile(); // Chama o método para carregar as informações do perfil
+    this.loadUserProfile();
   }
 
   async loadUserProfile() {
     try {
-      const profile = await this.authService.getProfile();  // Carregando o perfil
-      this.userProfile = profile;
-  
-      // Verifica se o perfil tem a role 'admin'
-      this.isAdmin = profile?.role === 'admin';  // Assumindo que 'role' é 'admin' para usuários admins
+      this.userProfile = await this.authService.getProfile();
+      this.isAdmin = this.userProfile?.role === 'admin';
     } catch (error) {
       console.error('Erro ao carregar perfil:', error);
-      this.isAdmin = false;  // Se der erro ou não encontrar o perfil, o botão não será mostrado
+      this.userProfile = null; // Em caso de erro, indica que não há perfil carregado
+      this.isAdmin = false;
     }
   }
 
@@ -39,9 +34,7 @@ export class PerfilPage implements OnInit {
     }
   }
 
-    // Método para voltar à página Home
-    goHome() {
-      this.router.navigate(['/home']);  // Redireciona para a home
-    }
-
+  goHome() {
+    this.router.navigate(['/home']);
+  }
 }

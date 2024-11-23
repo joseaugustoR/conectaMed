@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <!-- Lista de consultas -->
   <ion-list *ngIf="consultas.length > 0; else noConsultas">
     <ion-item *ngFor="let consulta of consultas">
       <ion-card>
@@ -20,6 +21,7 @@
     </ion-item>
   </ion-list>
 
+  <!-- Mensagem quando não há consultas -->
   <ng-template #noConsultas>
     <ion-text color="medium">
       <p style="text-align: center; margin-top: 20px;">Nenhuma consulta agendada.</p>

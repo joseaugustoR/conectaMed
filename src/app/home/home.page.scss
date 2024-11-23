@@ -56,16 +56,20 @@ ion-content {
   margin-bottom: 56px; /* Ajuste o valor se o tamanho do ion-tab-bar for diferente */
 }
 
+
 /*cards de consulta*/
 
-.consultas{
-  background-color: #0081AA ;
+.consultas {
+  background-color: #0081AA;
+  z-index: 0; 
 }
+
 .consultas ion-card-header {
   background-color: #0081AA;
 }
+
 .consultas ion-card-title {
-  color:#fff;
+  color: #fff;
 }
 
 

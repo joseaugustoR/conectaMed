@@ -3,6 +3,7 @@ import { LoadingController, NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -16,7 +17,9 @@ export class CadastroPage implements OnInit {
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {
@@ -40,20 +43,38 @@ export class CadastroPage implements OnInit {
   async onSubmit() {
     if (this.cadastroForm.valid) {
       const formData = this.cadastroForm.value;
-
+  
       try {
-        // Chama o método de cadastro com role padrão "user"
+        const loading = await this.loadingCtrl.create({
+          message: 'Cadastrando...',
+        });
+        await loading.present();
+  
+        // Chama o método de cadastro
         await this.authService.registerUser(formData);
-
+  
+        await loading.dismiss();
         console.log('Usuário cadastrado com sucesso!');
         this.router.navigate(['/home']); // Redireciona para a home após o cadastro
       } catch (error) {
         console.error('Erro ao cadastrar usuário:', error);
+        const alert = await this.alertCtrl.create({
+          header: 'Erro',
+          message: 'Não foi possível realizar o cadastro. Tente novamente.',
+          buttons: ['OK'],
+        });
+        await alert.present();
       }
     } else {
-      console.log('Formulário inválido');
+      const alert = await this.alertCtrl.create({
+        header: 'Formulário inválido',
+        message: 'Preencha todos os campos corretamente antes de prosseguir.',
+        buttons: ['OK'],
+      });
+      await alert.present();
     }
   }
+  
 
   // Método para voltar à página Home
   goHome() {

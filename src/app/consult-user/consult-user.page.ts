@@ -1,51 +1,120 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-consult-user',
   templateUrl: './consult-user.page.html',
   styleUrls: ['./consult-user.page.scss'],
 })
-export class ConsultUserPage implements OnInit {
-
+export class ConsultUserPage {
   nome: string = '';
   cpf: string = '';
   email: string = '';
-  mensagemErro: string = '';  // Variável para armazenar a mensagem de erro
-  usuarioNaoEncontrado: boolean = false; // Variável para controlar a mensagem de "usuário não encontrado"
+  usuariosEncontrados: any[] = []; // Lista para armazenar os usuários encontrados
+  mensagemErro: string = '';
+  usuarioNaoEncontrado: boolean = false;
 
-  // Dados simulados de um usuário (pode ser substituído por uma consulta à API)
-  usuarioFicticio = {
-    nome: 'João Silva',
-    cpf: '12345678901',
-    email: 'joao.silva@example.com'
-  };
+  constructor(private authService: AuthService,  private alertCtrl: AlertController) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  // Função chamada ao clicar no botão de Consultar
-  consultarUsuario() {
-    this.mensagemErro = ''; // Limpa a mensagem de erro
-    this.usuarioNaoEncontrado = false; // Reseta a flag de "usuário não encontrado"
-    
-    // Verifica se todos os campos foram preenchidos
-    if (!this.nome || !this.cpf || !this.email) {
-      this.mensagemErro = 'Por favor, preencha todos os campos.';
+  async consultarUsuario() {
+    if (!this.nome && !this.cpf && !this.email) {
+      this.mensagemErro = 'Por favor, preencha pelo menos um campo para a consulta.';
+      this.usuarioNaoEncontrado = false;
       return;
     }
 
-    // Simula a consulta (pode ser substituído por uma consulta real a uma API)
-    if (this.nome === this.usuarioFicticio.nome &&
-        this.cpf === this.usuarioFicticio.cpf &&
-        this.email === this.usuarioFicticio.email) {
-      console.log('Usuário encontrado:', this.usuarioFicticio);
-      // Aqui você pode fazer o que for necessário após encontrar o usuário
-    } else {
-      this.usuarioNaoEncontrado = true;  // Exibe a mensagem de "usuário não encontrado"
+    this.mensagemErro = ''; // Limpa mensagem de erro
+    this.usuarioNaoEncontrado = false; // Reseta o estado anterior
+
+    try {
+      const usuarios = await this.authService.searchUsers(this.nome, this.cpf, this.email);
+
+      if (usuarios.length > 0) {
+        this.usuariosEncontrados = usuarios; // Armazena os usuários encontrados
+        console.log('Usuários encontrados:', this.usuariosEncontrados);
+      } else {
+        this.usuarioNaoEncontrado = true; // Exibe mensagem de "não encontrado"
+      }
+    } catch (error) {
+      console.error('Erro ao consultar usuário:', error);
+      this.mensagemErro = 'Ocorreu um erro ao consultar os usuários.';
     }
   }
+
+// Função para editar um usuário
+async editarUsuario(usuario: any) {
+  const alert = await this.alertCtrl.create({
+    header: 'Editar Usuário',
+    inputs: [
+      {
+        name: 'nome',
+        type: 'text',
+        placeholder: 'Nome',
+        value: usuario.nome,
+      },
+      {
+        name: 'email',
+        type: 'email',
+        placeholder: 'Email',
+        value: usuario.email,
+      },
+      {
+        name: 'cpf',
+        type: 'text',
+        placeholder: 'CPF',
+        value: usuario.cpf,
+      },
+    ],
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+      },
+      {
+        text: 'Salvar',
+        handler: async (data) => {
+          try {
+            await this.authService.updateUser(usuario.id, data);
+            console.log('Usuário atualizado com sucesso!');
+            this.consultarUsuario(); // Atualiza a lista após a edição
+          } catch (error) {
+            console.error('Erro ao atualizar usuário:', error);
+          }
+        },
+      },
+    ],
+  });
+
+  await alert.present();
 }
 
+    // Função para excluir um usuário
+    async excluirUsuario(id: string) {
+      const alert = await this.alertCtrl.create({
+        header: 'Confirmar Exclusão',
+        message: 'Tem certeza que deseja excluir este usuário?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+          },
+          {
+            text: 'Excluir',
+            handler: async () => {
+              try {
+                await this.authService.deleteUser(id);
+                console.log('Usuário excluído com sucesso!');
+                this.consultarUsuario(); // Atualiza a lista após a exclusão
+              } catch (error) {
+                console.error('Erro ao excluir usuário:', error);
+              }
+            },
+          },
+        ],
+      });
+  
+      await alert.present();
+    }
+  }
 

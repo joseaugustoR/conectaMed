@@ -1,39 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div *ngIf="userProfile">
-      <ion-card-header>
-        <ion-card-title>{{ userProfile.displayName || userProfile.nome || 'Nome não disponível' }}</ion-card-title>
-      </ion-card-header>
+  <div *ngIf="userProfile; else carregando">
+    <ion-card-header>
+      <ion-card-title>{{ userProfile.displayName || 'Nome não disponível' }}</ion-card-title>
+    </ion-card-header>
 
-      <ion-card-content>
-        <p><strong>Email:</strong> {{ userProfile.email }}</p>
-        <p><strong>Data de Nascimento:</strong> {{ userProfile.dataNascimento || 'Não disponível' }}</p>
-        <p><strong>Gênero:</strong> {{ userProfile.genero || 'Não especificado' }}</p>
-        <p><strong>CPF:</strong> {{ userProfile.cpf || 'Não disponível' }}</p>
-        <p><strong>Celular:</strong> {{ userProfile.celular || 'Não disponível' }}</p>
-        <p><strong>Endereço:</strong> {{ userProfile.endereco || 'Não disponível' }}</p>
-        <p><strong>País:</strong> {{ userProfile.pais || 'Não disponível' }}</p>
-        <p><strong>Estado:</strong> {{ userProfile.estado || 'Não disponível' }}</p>
-        <p><strong>Bairro:</strong> {{ userProfile.bairro || 'Não disponível' }}</p>
-      </ion-card-content>
-
-        <ion-button *ngIf="isAdmin" expand="full" routerLink="/cadastro">
-          Cadastrar Novo Usuário
-        </ion-button>
-
-
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ userProfile.email }}</p>
+      <p><strong>Data de Nascimento:</strong> {{ userProfile.dataNascimento || 'Não disponível' }}</p>
+      <p><strong>Gênero:</strong> {{ userProfile.genero || 'Não especificado' }}</p>
+      <p><strong>CPF:</strong> {{ userProfile.cpf || 'Não disponível' }}</p>
+      <p><strong>Celular:</strong> {{ userProfile.celular || 'Não disponível' }}</p>
+      <p><strong>Endereço:</strong> {{ userProfile.endereco || 'Não disponível' }}</p>
+      <p><strong>País:</strong> {{ userProfile.pais || 'Não disponível' }}</p>
+      <p><strong>Estado:</strong> {{ userProfile.estado || 'Não disponível' }}</p>
+      <p><strong>Bairro:</strong> {{ userProfile.bairro || 'Não disponível' }}</p>
+    </ion-card-content>
 
     <div *ngIf="userProfile.photoURL">
       <img [src]="userProfile.photoURL" alt="Foto de perfil" class="profile-photo">
     </div>
+
+    <ion-button *ngIf="isAdmin" expand="full" routerLink="/consult-user">
+      Consultar usuários
+    </ion-button>
   </div>
 
-  <div *ngIf="!userProfile">
+  <ng-template #carregando>
     <p>Carregando perfil...</p>
-  </div>
+  </ng-template>
 </ion-content>
