@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Bem-vindo, Usuário</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logOut()">Logout</ion-button> 
-    </ion-buttons>
+    <img id="logo" src="assets/logo_branca.png" alt="Logo">
+    <br>
+    <div id="user">
+      <p id="bem">Bem-vindo, Usuário</p>
+        <ion-button (click)="logOut()">Logout</ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -27,7 +29,7 @@
       <ion-card-title>Minhas Consultas</ion-card-title>
     </ion-card-header>
   </ion-card>
-  
+
   <app-mapa></app-mapa>
 </ion-content>
 
