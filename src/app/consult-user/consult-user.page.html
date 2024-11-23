@@ -25,6 +25,9 @@
     </ion-text>
 
     <ion-button expand="full" id="conf" (click)="consultarUsuario()">Consultar</ion-button>
+    <ion-button expand="full" id="conf" [routerLink]="['/perfil']">
+      Voltar para Perfil
+      </ion-button>
 
     <ion-card *ngFor="let usuario of usuariosEncontrados">
       <ion-card-header>

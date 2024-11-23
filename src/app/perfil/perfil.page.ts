@@ -37,4 +37,14 @@ export class PerfilPage implements OnInit {
   goHome() {
     this.router.navigate(['/home']);
   }
+
+
+  async logout() {
+    try {
+      await this.authService.logOut(); // Chama o método logOut do AuthService
+      console.log('Usuário deslogado com sucesso.');
+    } catch (error) {
+      console.error('Erro ao deslogar:', error);
+    }
+  }
 }
