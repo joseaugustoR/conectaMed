@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./minhas-consultas.page.scss'],
 })
 export class MinhasConsultasPage implements OnInit, OnDestroy {
-  consultas: any[] = []; // Array para armazenar as consultas
-  consultaSubscription: Subscription | null = null; // Gerencia a assinatura para limpar no OnDestroy
+  consultas: any[] = []; 
+  consultaSubscription: Subscription | null = null; 
 
   constructor(private authService: AuthService, private firestore: AngularFirestore) {}
 
@@ -21,18 +21,17 @@ export class MinhasConsultasPage implements OnInit, OnDestroy {
       if (user && user.uid) {
         console.log('UID do usuário logado:', user?.uid);
 
-        // Busca as consultas do usuário logado
         this.consultaSubscription = this.firestore
           .collection('agendamentos', (ref) => ref.where('uid', '==', user.uid))
-          .valueChanges({ idField: 'id' }) // Inclui o ID do documento
+          .valueChanges({ idField: 'id' }) 
           .subscribe(
             (data) => {
               console.log('Agendamentos retornados do Firestore:', data);
-              this.consultas = data; // Atualiza o array com os agendamentos
+              this.consultas = data; 
             },
             (error) => {
               console.error('Erro ao buscar consultas no Firestore:', error);
-              this.consultas = []; // Certifica que a lista é limpa em caso de erro
+              this.consultas = []; 
             }
           );
       } else {
@@ -44,7 +43,6 @@ export class MinhasConsultasPage implements OnInit, OnDestroy {
     }
   }
 
-  // Limpa assinaturas ao sair da página para evitar memory leaks
   ngOnDestroy() {
     if (this.consultaSubscription) {
       this.consultaSubscription.unsubscribe();

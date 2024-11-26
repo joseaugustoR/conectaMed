@@ -11,18 +11,17 @@ export class ConsultUserPage {
   nome: string = '';
   cpf: string = '';
   email: string = '';
-  usuariosEncontrados: any[] = []; // Lista para armazenar os usuários encontrados
+  usuariosEncontrados: any[] = []; 
   mensagemErro: string = '';
   usuarioNaoEncontrado: boolean = false;
 
   constructor(private authService: AuthService,  private alertCtrl: AlertController) {}
 
-  // Função para normalizar texto: remove acentos e converte para minúsculas
   private normalizeText(text: string): string {
     return text
-      .normalize('NFD') // Decompõe caracteres acentuados
-      .replace(/[\u0300-\u036f]/g, '') // Remove acentos
-      .toLowerCase(); // Converte para minúsculas
+      .normalize('NFD') 
+      .replace(/[\u0300-\u036f]/g, '') 
+      .toLowerCase(); 
   }
 
   async consultarUsuario() {
@@ -30,22 +29,18 @@ export class ConsultUserPage {
     this.usuarioNaoEncontrado = false;
     this.usuariosEncontrados = [];
 
-    // Validação: pelo menos um campo deve ser preenchido
     if (!this.nome && !this.cpf && !this.email) {
         this.mensagemErro = 'Por favor, preencha pelo menos um campo para a consulta.';
         return;
     }
 
     try {
-        // Buscar todos os usuários
         const usuarios = await this.authService.getAllUsers();
 
-        // Normalizar os termos de busca
         const termoNome = this.nome ? this.normalizeText(this.nome) : '';
         const termoCpf = this.cpf ? String(this.cpf).replace(/\D/g, '') : ''; // Garantir que this.cpf é string
         const termoEmail = this.email ? this.email.trim().toLowerCase() : '';
 
-        // Filtrar os usuários com base nos critérios
         this.usuariosEncontrados = usuarios.filter((usuario: any) => {
             let corresponde = true;
 
@@ -67,7 +62,6 @@ export class ConsultUserPage {
             return corresponde;
         });
 
-        // Verificar se encontrou algum usuário
         if (this.usuariosEncontrados.length === 0) {
             this.usuarioNaoEncontrado = true;
         } else {
@@ -81,8 +75,6 @@ export class ConsultUserPage {
 
 
   
-
-// Função para editar um usuário
 async editarUsuario(usuario: any) {
   const alert = await this.alertCtrl.create({
     header: 'Editar Usuário',
@@ -117,7 +109,7 @@ async editarUsuario(usuario: any) {
           try {
             await this.authService.updateUser(usuario.id, data);
             console.log('Usuário atualizado com sucesso!');
-            this.consultarUsuario(); // Atualiza a lista após a edição
+            this.consultarUsuario(); 
           } catch (error) {
             console.error('Erro ao atualizar usuário:', error);
           }
@@ -129,7 +121,6 @@ async editarUsuario(usuario: any) {
   await alert.present();
 }
 
-    // Função para excluir um usuário
     async excluirUsuario(id: string) {
       const alert = await this.alertCtrl.create({
         header: 'Confirmar Exclusão',

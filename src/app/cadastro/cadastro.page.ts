@@ -50,12 +50,11 @@ export class CadastroPage implements OnInit {
         });
         await loading.present();
   
-        // Chama o método de cadastro
         await this.authService.registerUser(formData);
   
         await loading.dismiss();
         console.log('Usuário cadastrado com sucesso!');
-        this.router.navigate(['/home']); // Redireciona para a home após o cadastro
+        this.router.navigate(['/home']); 
       } catch (error) {
         console.error('Erro ao cadastrar usuário:', error);
         const alert = await this.alertCtrl.create({
@@ -75,8 +74,6 @@ export class CadastroPage implements OnInit {
     }
   }
   
-
-  // Método para voltar à página Home
   goHome() {
     this.router.navigate(['/home']); // Redireciona para a home
   }

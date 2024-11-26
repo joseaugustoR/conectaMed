@@ -56,26 +56,23 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm?.valid) {
       try {
-        // Login do usuário
         const userCredential = await this.authService.loginUser(
           this.loginForm.value.email,
           this.loginForm.value.password
         );
 
-        // Verifica a role do usuário após login
         if (userCredential) {
           loading.dismiss();
 
-          // Redireciona baseado na role do usuário
           if (userCredential.role === 'admin') {
-            this.route.navigate(['/home']); // Redireciona para a tela de admin
+            this.route.navigate(['/home']); 
           } else {
-            this.route.navigate(['/home']); // Redireciona para a home normal
+            this.route.navigate(['/home']); 
           }
         }
       } catch (error) {
         loading.dismiss();
-        this.showToast(error.message); // Exibe o erro no toast
+        this.showToast(error.message); 
       }
     } else {
       loading.dismiss();

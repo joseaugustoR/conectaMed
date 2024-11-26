@@ -14,7 +14,6 @@
   <div id="body">
     <p id="titulo">Agendar consulta</p>
 
-    <!-- Formulário de Seleção -->
     <ion-list>
       <ion-item>
         <ion-select [(ngModel)]="consulta" interface="popover" placeholder="Consulta">
@@ -55,15 +54,12 @@
       </ion-item>
     </ion-list>
 
-    <!-- Exibe a mensagem de erro se algum campo estiver vazio -->
     <ion-text color="danger" *ngIf="mensagemErro">
       <p id="erro">{{ mensagemErro }}</p>
     </ion-text>
 
-    <!-- Botão para Exibir as Informações -->
     <ion-button expand="full" id="conf" (click)="exibirInformacoes()">Confirmar Agendamento</ion-button>
 
-    <!-- Card com as Informações Preenchidas -->
     <ion-card *ngIf="informacoes">
       <ion-card-header>
         <ion-card-title>Agendamento Confirmado</ion-card-title>

@@ -9,7 +9,7 @@ interface Usuario {
   nome: string;
   cpf: string;
   email: string;
-  [key: string]: any; // Permite campos extras, caso existam
+  [key: string]: any; 
 }
 
 @Injectable({
@@ -22,24 +22,20 @@ export class AuthService {
     private firestore: AngularFirestore
   ) {}
 
-  // Em auth.service.ts
 async loginUser(email: string, password: string): Promise<any> {
   try {
     const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
     const user = userCredential.user;
 
     if (user) {
-      // Obtendo os dados do usuário
       const userData = await this.firestore.collection('usuarios').doc(user.uid).get().toPromise();
 
       if (userData.exists) {
-        const data = userData.data() as { [key: string]: any };  // Definindo um tipo genérico para o usuário
+        const data = userData.data() as { [key: string]: any }; 
 
-        // Acessando o role com a notação de índice
-        const role = data['role'] || null;  // Aqui está a correção
-        const displayName = data['nome'] || user.displayName || null;  // Acessando nome com a notação de índice
+        const role = data['role'] || null;
+        const displayName = data['nome'] || user.displayName || null;  
 
-        // Retornando os dados do usuário logado
         return {
           uid: user.uid,
           email: user.email,
@@ -54,7 +50,6 @@ async loginUser(email: string, password: string): Promise<any> {
   }
 }
 
-  // Método para logar com Google
   async googleLogin(): Promise<any> {
     try {
       console.log('Iniciando login com Google...');
@@ -66,7 +61,6 @@ async loginUser(email: string, password: string): Promise<any> {
     }
   }
 
-  // Método de logout
   async logOut(): Promise<void> {
     try {
       await this.afAuth.signOut();
@@ -78,7 +72,6 @@ async loginUser(email: string, password: string): Promise<any> {
     }
   }
 
-  // Recuperar perfil do usuário atual
   async getProfile(): Promise<any> {
     try {
       const user = await this.afAuth.currentUser;
@@ -86,7 +79,7 @@ async loginUser(email: string, password: string): Promise<any> {
 
       const userDoc = this.firestore.collection('usuarios').doc(user.uid);
       const userData = await userDoc.valueChanges().pipe(first()).toPromise();
-      const userObject = userData as Record<string, any> | null; // Tipagem explícita como objeto
+      const userObject = userData as Record<string, any> | null; 
 
       console.log('Perfil carregado:', userObject);
 
@@ -109,7 +102,6 @@ async loginUser(email: string, password: string): Promise<any> {
     }
   }
 
-  // Registrar novo usuário
   async registerUser(userData: any): Promise<void> {
     try {
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(
@@ -148,11 +140,11 @@ async loginUser(email: string, password: string): Promise<any> {
     try {
       const snapshot = await this.firestore.collection('usuarios').get().toPromise();
       return snapshot.docs.map((doc) => {
-        const data = doc.data(); // Os dados podem ser de qualquer tipo
-        if (data && typeof data === 'object') { // Verifica se é um objeto antes do espalhamento
-          return { id: doc.id, ...data }; // Inclui o ID do documento nos dados retornados
+        const data = doc.data(); 
+        if (data && typeof data === 'object') { 
+          return { id: doc.id, ...data }; 
         } else {
-          return { id: doc.id }; // Caso `data` não seja um objeto, retorna apenas o ID
+          return { id: doc.id };
         }
       });
     } catch (error) {
@@ -184,16 +176,13 @@ async loginUser(email: string, password: string): Promise<any> {
 
   async consultarUsuarios(nome: string, cpf: string, email: string): Promise<Usuario[]> {
     try {
-      // Obtém a coleção tipada de usuários
       const usuariosSnapshot = await this.firestore.collection<Usuario>('usuarios').ref.get();
 
-      // Processa os documentos da coleção
       const usuarios = usuariosSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
 
-      // Filtra os usuários com base nos critérios fornecidos
       return usuarios.filter((usuario) => {
         const nomeUsuario = this.normalizeString(usuario.nome || '');
         const cpfUsuario = (usuario.cpf || '').trim();
@@ -226,14 +215,13 @@ async loginUser(email: string, password: string): Promise<any> {
         let queryRef = ref as firebase.firestore.Query;
   
         if (nome) {
-          // Normaliza a consulta para insensibilidade a maiúsculas/minúsculas
           queryRef = queryRef.where('nome_normalizado', '>=', nome).where('nome_normalizado', '<=', nome + '\uf8ff');
         }
         if (cpf) {
-          queryRef = queryRef.where('cpf', '==', cpf); // CPF já está normalizado
+          queryRef = queryRef.where('cpf', '==', cpf); 
         }
         if (email) {
-          queryRef = queryRef.where('email_normalizado', '==', email); // Normaliza email
+          queryRef = queryRef.where('email_normalizado', '==', email); 
         }
   
         return queryRef;
@@ -241,9 +229,9 @@ async loginUser(email: string, password: string): Promise<any> {
   
       const snapshot = await query.get().toPromise();
   
-      // Ajuste aqui para o erro do spread
+
       return snapshot.docs.map((doc) => {
-        const data = doc.data() as any; // Especificamos que `data` é do tipo `any`
+        const data = doc.data() as any; 
         return { id: doc.id, ...data };
       });
     } catch (error) {

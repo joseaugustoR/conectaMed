@@ -38,7 +38,6 @@ export class AgendamentoPage implements OnInit {
         hora: this.hora,
       };
 
-      // Salva o agendamento no Firestore
       try {
         const user = await this.authService.getProfile();
         if (user && user.uid) {
