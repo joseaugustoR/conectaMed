@@ -20,13 +20,13 @@
       <img [src]="userProfile.photoURL" alt="Foto de perfil" class="profile-photo">
     </div>
 
-    <ion-button *ngIf="isAdmin" expand="full" routerLink="/consult-user">
+    <ion-button *ngIf="isAdmin" id="conf" expand="full" routerLink="/consult-user">
       Consultar usuários
     </ion-button>
   </div>
 
   <ion-content>
-    <ion-button expand="full" (click)="logout()">Sair da conta</ion-button>
+    <ion-button expand="full" id="conf" (click)="logout()">Sair da conta</ion-button>
   </ion-content>
 
   <ng-template #carregando>

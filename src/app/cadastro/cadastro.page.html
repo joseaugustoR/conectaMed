@@ -24,9 +24,10 @@
       <div id="botao">
         <ion-button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</ion-button>
       </div>
-
-
     </form>
+      <div>
+        <ion-button type="submit" expand="block" [routerLink]="['/login']">Voltar para Login</ion-button>
+      </div>
     <p id="direitos">©ConectaMed - Todos os direitos reservados</p>
   </div>
 </ion-content>

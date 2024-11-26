@@ -8,6 +8,11 @@
 </ion-header>
 
 <ion-content>
+  <!-- Mensagem de carregamento -->
+  <ion-spinner *ngIf="consultas.length === 0 && !consultaSubscription">
+    <p style="text-align: center;">Carregando consultas...</p>
+  </ion-spinner>
+
   <!-- Lista de consultas -->
   <ion-list *ngIf="consultas.length > 0; else noConsultas">
     <ion-item *ngFor="let consulta of consultas">
@@ -24,7 +29,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- Mensagem quando não há consultas -->
+  <!-- Mensagem caso não haja consultas -->
   <ng-template #noConsultas>
     <ion-text color="medium">
       <p style="text-align: center; margin-top: 20px;">Nenhuma consulta agendada.</p>

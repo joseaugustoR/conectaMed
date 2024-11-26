@@ -143,19 +143,24 @@ async loginUser(email: string, password: string): Promise<any> {
       throw error;
     }
   }
-
+  
   async getAllUsers(): Promise<any[]> {
     try {
       const snapshot = await this.firestore.collection('usuarios').get().toPromise();
-      return snapshot.docs.map(doc => {
-        const data = doc.data() as Record<string, any>; // Garante que seja um objeto genérico
-        return { id: doc.id, ...data };
+      return snapshot.docs.map((doc) => {
+        const data = doc.data(); // Os dados podem ser de qualquer tipo
+        if (data && typeof data === 'object') { // Verifica se é um objeto antes do espalhamento
+          return { id: doc.id, ...data }; // Inclui o ID do documento nos dados retornados
+        } else {
+          return { id: doc.id }; // Caso `data` não seja um objeto, retorna apenas o ID
+        }
       });
     } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
+      console.error('Erro ao buscar todos os usuários:', error);
       throw error;
     }
   }
+
 
   async updateUser(id: string, data: any): Promise<void> {
     try {
@@ -221,13 +226,14 @@ async loginUser(email: string, password: string): Promise<any> {
         let queryRef = ref as firebase.firestore.Query;
   
         if (nome) {
-          queryRef = queryRef.where('nome', '>=', nome).where('nome', '<=', nome + '\uf8ff');
+          // Normaliza a consulta para insensibilidade a maiúsculas/minúsculas
+          queryRef = queryRef.where('nome_normalizado', '>=', nome).where('nome_normalizado', '<=', nome + '\uf8ff');
         }
         if (cpf) {
-          queryRef = queryRef.where('cpf', '==', cpf);
+          queryRef = queryRef.where('cpf', '==', cpf); // CPF já está normalizado
         }
         if (email) {
-          queryRef = queryRef.where('email', '==', email);
+          queryRef = queryRef.where('email_normalizado', '==', email); // Normaliza email
         }
   
         return queryRef;

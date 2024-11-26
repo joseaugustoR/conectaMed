@@ -17,30 +17,70 @@ export class ConsultUserPage {
 
   constructor(private authService: AuthService,  private alertCtrl: AlertController) {}
 
-  async consultarUsuario() {
-    if (!this.nome && !this.cpf && !this.email) {
-      this.mensagemErro = 'Por favor, preencha pelo menos um campo para a consulta.';
-      this.usuarioNaoEncontrado = false;
-      return;
-    }
+  // Função para normalizar texto: remove acentos e converte para minúsculas
+  private normalizeText(text: string): string {
+    return text
+      .normalize('NFD') // Decompõe caracteres acentuados
+      .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+      .toLowerCase(); // Converte para minúsculas
+  }
 
-    this.mensagemErro = ''; // Limpa mensagem de erro
-    this.usuarioNaoEncontrado = false; // Reseta o estado anterior
+  async consultarUsuario() {
+    this.mensagemErro = '';
+    this.usuarioNaoEncontrado = false;
+    this.usuariosEncontrados = [];
+
+    // Validação: pelo menos um campo deve ser preenchido
+    if (!this.nome && !this.cpf && !this.email) {
+        this.mensagemErro = 'Por favor, preencha pelo menos um campo para a consulta.';
+        return;
+    }
 
     try {
-      const usuarios = await this.authService.searchUsers(this.nome, this.cpf, this.email);
+        // Buscar todos os usuários
+        const usuarios = await this.authService.getAllUsers();
 
-      if (usuarios.length > 0) {
-        this.usuariosEncontrados = usuarios; // Armazena os usuários encontrados
-        console.log('Usuários encontrados:', this.usuariosEncontrados);
-      } else {
-        this.usuarioNaoEncontrado = true; // Exibe mensagem de "não encontrado"
-      }
+        // Normalizar os termos de busca
+        const termoNome = this.nome ? this.normalizeText(this.nome) : '';
+        const termoCpf = this.cpf ? String(this.cpf).replace(/\D/g, '') : ''; // Garantir que this.cpf é string
+        const termoEmail = this.email ? this.email.trim().toLowerCase() : '';
+
+        // Filtrar os usuários com base nos critérios
+        this.usuariosEncontrados = usuarios.filter((usuario: any) => {
+            let corresponde = true;
+
+            if (termoNome) {
+                const nomeNormalizado = this.normalizeText(usuario.nome || '');
+                corresponde = corresponde && nomeNormalizado.includes(termoNome);
+            }
+
+            if (termoCpf) {
+                const cpfNormalizado = usuario.cpf ? String(usuario.cpf).replace(/\D/g, '') : '';
+                corresponde = corresponde && (cpfNormalizado === termoCpf);
+            }
+
+            if (termoEmail) {
+                const emailNormalizado = (usuario.email || '').toLowerCase();
+                corresponde = corresponde && (emailNormalizado === termoEmail);
+            }
+
+            return corresponde;
+        });
+
+        // Verificar se encontrou algum usuário
+        if (this.usuariosEncontrados.length === 0) {
+            this.usuarioNaoEncontrado = true;
+        } else {
+            console.log('Usuários encontrados:', this.usuariosEncontrados);
+        }
     } catch (error) {
-      console.error('Erro ao consultar usuário:', error);
-      this.mensagemErro = 'Ocorreu um erro ao consultar os usuários.';
+        console.error('Erro ao consultar usuários:', error);
+        this.mensagemErro = 'Ocorreu um erro ao consultar os usuários.';
     }
-  }
+}
+
+
+  
 
 // Função para editar um usuário
 async editarUsuario(usuario: any) {
