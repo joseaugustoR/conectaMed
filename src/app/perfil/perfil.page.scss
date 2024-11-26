@@ -1,51 +1,65 @@
-ion-toolbar{
-    height: 80px;
-    --background:#0081AA;
-  }
-  #logo{
-    width: 100px;
-    margin: 0 0 10px 0;
-  }
-  #title{
-    margin: 30px 0 0 10px;
-    color: white;
-    font-size: 25px;
-  }
+*{
+  font-family: "open sans", sans-serif;
+}
 
-  .perfil-container {
-    padding: 16px;
-  }
+ion-toolbar{
+  height: 80px;
+  --background:#0081AA;
+}
+
+#title{
+  margin: 30px 0 0 10px;
+  color: white;
+  font-size: 25px;
+}
+
+#logo{
+  width: 100px;
+  margin: 0 0 10px 0;
+}
   
-  ion-card {
+ion-card {
     padding: 16px;
     margin: 10px 0;
-  }
+}
   
-  .perfil-info {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .perfil-info p {
-    margin: 8px 0;
-  }
-  
-  ion-card-header {
-    text-align: center;
-  }
-  
-  ion-card-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #3880ff;
-  }
-  
-  ion-card-subtitle {
-    font-size: 14px;
-    color: #666;
-  }
-  
+ion-title {
+  text-align: center;
+  --background:white;
+}
+
+#user{
+  font-size: 30px;
+}
+
+p{
+  font-size: 18px;
+}
+
+ion-card-content{
+  margin-bottom: 30px;
+}
+
+ion-button{
+  --background: #0081AA;
+  padding: 0 10px 0 10px;
+}
   #conf{
     --background:#0081AA;
     --collor: white;
+}
+
+ion-card-header {
+  text-align: center;
+}
+
+ion-card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3880ff;
+}
+
+ion-card-subtitle {
+  font-size: 14px;
+  color: #666;
 }

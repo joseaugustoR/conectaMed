@@ -4,6 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: '',
     redirectTo: 'login', // Página inicial padrão
     pathMatch: 'full',
   },
@@ -17,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'criadores',
-    loadChildren: () => import('./criadores/criadores.module').then((m) => m.CriadoresPageModule),
+    loadChildren: () => import('./criadores/criadores.module').then(m => m.CriadoresPageModule)
   },
   {
     path: 'cadastro',

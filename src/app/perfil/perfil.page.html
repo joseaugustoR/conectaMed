@@ -1,9 +1,20 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
 <ion-content>
   <div *ngIf="userProfile; else carregando">
-    <ion-card-header>
-      <ion-card-title>{{ userProfile.displayName || 'Nome não disponível' }}</ion-card-title>
-    </ion-card-header>
-
+    <ion-header>
+      <ion-toolbar>
+        <p id="title">Perfil</p>
+        <ion-buttons slot="end">
+          <img id="logo" src="assets/logo_branca.png" alt="Logo">
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+ <ion-title>
+  <p id="user">{{ userProfile.displayName || 'Nome não disponível' }}</p>
+ </ion-title>
     <ion-card-content>
       <p><strong>Email:</strong> {{ userProfile.email }}</p>
       <p><strong>Data de Nascimento:</strong> {{ userProfile.dataNascimento || 'Não disponível' }}</p>

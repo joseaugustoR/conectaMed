@@ -21,12 +21,11 @@ ion-toolbar{
 
 #body{
     background-color: white;
-    padding: 10px 10px 250px 10px;
 }
 
 ion-card{
     background-color: #0081AA;
-    margin: 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 }
 
 #icons{
@@ -58,37 +57,9 @@ ion-card{
 #list{
     display: flex;
 }
-
-ion-tabs {
-   position:fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 10; /* Aumente o valor do z-index se precisar sobrepor outros elementos */
-}
   
 ion-content {
     margin-bottom: 56px; /* Ajuste o valor se o tamanho do ion-tab-bar for diferente */
-}
-
-.nav {
-    background-color: #0081AA !important; /* Cor de fundo das tabs */
-}
-  
-.nav ion-tab-button {
-    color: white !important; /* Cor do texto e ícones em branco */
-    background: transparent !important; /* Fundo transparente */
-}
-  
-.nav ion-tab-button:hover,
-.nav ion-tab-button:focus,
-.nav ion-tab-button:active {
-    color: white !important; /* Cor do texto e ícones em branco no hover, focus e active */
-    background: transparent !important; /* Fundo transparente */
-}
-  
-.nav ion-tab-button.activated {
-    color: white !important; /* Cor do texto e ícones em branco quando ativo */
-    background: transparent !important; /* Fundo transparente quando ativo */
 }
 
 .flex-card {
