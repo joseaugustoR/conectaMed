@@ -16,6 +16,8 @@
     <p style="text-align: center;">Carregando consultas...</p>
   </ion-spinner>
 
+  <ion-button expand="full" id="conf" [routerLink]="['/perfil']">Página Inicial</ion-button>
+
   <ion-list *ngIf="consultas.length > 0; else noConsultas">
     <ion-item *ngFor="let consulta of consultas">
       <ion-card>

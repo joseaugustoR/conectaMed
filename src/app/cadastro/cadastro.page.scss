@@ -3,75 +3,79 @@
 }
 
 #body {
-    background-image: url('../../assets/fundo.png'); 
-    background-size: cover;  
-    background-position: center; 
-    background-attachment: fixed;  
+    background-image: url('../../assets/fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    overflow-y: auto; 
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    min-height: 100vh; /* Garante que o fundo ocupe toda a altura */
 }
 
 #logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 50px; 
-    padding-bottom: 30px; 
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
 img {
-    width: 200px; 
+    width: 200px;
 }
 
 form {
-    padding: 10px;
-    background-color: rgba(0, 129, 170, 0.7); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    padding: 20px;
+    background-color: rgba(0, 129, 170, 0.85);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+    width: 90%; /* Ocupa 90% da largura da tela */
+    max-width: 400px; /* Limita a largura máxima */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 
 ion-input {
     --background: white;
     --color: #5A6266;
-    margin-bottom: 10px; 
-    --padding-start: 5px;
-    border-radius: 40px; 
-    border:none;
-    font-size: 10px;
-    width: 190px;
+    margin-bottom: 15px; /* Aumenta o espaçamento entre os campos */
+    --padding-start: 10px; /* Torna o padding interno maior */
+    border-radius: 20px;
+    border: none;
+    font-size: 14px; /* Aumenta o tamanho da fonte */
+    width: 100%; /* Ajusta a largura para preencher o formulário */
+    max-width: 350px; /* Limita a largura máxima */
 }
 
-
 ion-button {
-    --background: #0081AA; 
-    --color: white; 
-    width: 190px; 
+    --background: #0081AA;
+    --color: white;
+    width: 100%; /* Ocupa a largura total do formulário */
+    max-width: 350px; /* Limita a largura máxima */
     height: 50px;
     font-size: 16px;
-    border-radius: 25px;  
-    margin-top: 20px;  
-    transition: all 0.3s ease; 
-   
+    border-radius: 25px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 ion-button:hover {
-    --background: #5A6266; 
+    --background: #5A6266;
     --color: white;
-    cursor: pointer;  
+    cursor: pointer;
 }
-
 
 #direitos {
     margin: 30px 10px 0 10px;
     padding-bottom: 20px;
-    text-align: center; 
+    text-align: center;
     color: white;
     font-size: 12px;
 }
-
 
 .botao-cadastrar {
     color: white;

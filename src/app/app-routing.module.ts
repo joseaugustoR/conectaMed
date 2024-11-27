@@ -15,14 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule),
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then((m) => m.LoginPageModule),
-  },
-  {
     path: 'criadores',
     loadChildren: () => import('./criadores/criadores.module').then(m => m.CriadoresPageModule)
   },
@@ -35,17 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./contatos/contatos.module').then((m) => m.ContatosPageModule),
   },
   {
-    path: 'contatos',
-    loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-  },
-  {
     path: 'agendamento',
     loadChildren: () => import('./agendamento/agendamento.module').then((m) => m.AgendamentoPageModule),
   },
-  {
-    path: 'agendamento',
-    loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-  },
+
   {
     path: 'perfil',
     loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
